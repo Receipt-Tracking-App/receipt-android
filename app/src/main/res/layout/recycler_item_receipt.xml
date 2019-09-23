@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:layout_margin="12dp"
+
+    style="@style/Widget.MaterialComponents.CardView"
+    app:cardCornerRadius="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <LinearLayout android:id="@+id/recyclerItemReceipt_llForPriceAndDateTV"
+
+            android:orientation="vertical"
+            android:weightSum="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="120dp"
+            android:layout_height="match_parent">
+
+            <TextView android:id="@+id/recyclerItemReceipt_priceTV"
+
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold"
+                android:layout_width="95dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:text="$403"
+                android:textSize="30sp" />
+
+            <TextView android:id="@+id/recyclerItemReceipt_dateTV"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="8/18/2019" />
+        </LinearLayout>
+
+        <View android:id="@+id/recyclerItemReceipt_divider"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_llForPriceAndDateTV"
+            android:background="@android:color/darker_gray"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <ImageView android:id="@+id/recyclerItemReceipt_locationIcon"
+
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_location_on_black_24dp"
+            app:layout_constraintBottom_toBottomOf ="@id/recyclerItemReceipt_divider"
+            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView android:id="@+id/recyclerItemReceipt_locationTV"
+
+            android:layout_marginStart="4dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@id/recyclerItemReceipt_locationIcon"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerItemReceipt_locationIcon"
+            android:text="1645 S. Pecan Lane"
+            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_locationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView android:id="@+id/recyclerItemReceipt_businessIcon"
+
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_divider"
+            app:layout_constraintTop_toTopOf="@id/recyclerItemReceipt_divider"
+            android:src="@drawable/ic_business_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView android:id="@+id/recyclerItemReceipt_businessTV"
+
+            android:layout_marginStart="4dp"
+            android:textSize="16sp"
+            android:text="McDonalds"
+            app:layout_constraintTop_toTopOf="@id/recyclerItemReceipt_businessIcon"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerItemReceipt_businessIcon"
+            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_businessIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/recyclerItemReceipt_expandable"
+
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton android:id="@+id/recyclerItemReceipt_expandedShowReceiptBttn"
+
+                android:text="Receipt"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/recyclerItemReceipt_notesTitleTextTV"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="Notes:"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerItemReceipt_expandedShowReceiptBttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/recyclerItemReceipt_notesTV"
+
+            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:text="@string/sed_ut_perspiciatis_unde_omnis_iste_natus_error_sit_voluptatem_accusantium_doloremque_laudantium_totam_rem_aperiam_eaque_ipsa_quae_ab_illo_inventore_veritatis_et_quasi_architecto_beatae_vitae_dicta_sunt_explicabo"
+            app:layout_constraintTop_toBottomOf="@id/recyclerItemReceipt_notesTitleTextTV"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
