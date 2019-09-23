@@ -15,6 +15,12 @@ class ReceiptViewModel : ViewModel(){
 
         return repo.readAllReceipts()
     }
+    fun createReceipt(receipt: SavedReceipt){
+        repo.createReceipt((receipt))
+    }
+
+
+
     fun updateReceipt(receipt: SavedReceipt){
         repo.updateReceipt(receipt)
     }
