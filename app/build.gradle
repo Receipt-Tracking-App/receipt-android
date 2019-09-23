@@ -71,4 +71,5 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$aac_version"
 
     implementation "android.arch.lifecycle:viewmodel:$aac_version"
+
 }
