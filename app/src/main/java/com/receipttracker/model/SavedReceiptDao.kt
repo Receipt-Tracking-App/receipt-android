@@ -1,5 +1,6 @@
 package com.receipttracker.model
 
+import android.app.Service
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -13,6 +14,9 @@ interface SavedReceiptDao{
 
     @Query("select * from SavedReceipt")
     fun readAllReceipts(): LiveData<List<SavedReceipt>>
+
+    @Query("select* from SavedReceipt where service = :services")
+    fun searchFilterByService(services: Services)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateReceipt(savedReceipt: SavedReceipt)

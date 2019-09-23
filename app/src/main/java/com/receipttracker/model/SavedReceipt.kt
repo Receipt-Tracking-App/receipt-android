@@ -62,4 +62,7 @@ class SavedReceipt{
     }
 
 
+}enum class Services (services: String){
+    Business("business"),
+    Food("food")
 }
