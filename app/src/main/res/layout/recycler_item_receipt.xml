@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"/>
 
         <ImageButton android:id="@+id/recyclerItemReceipt_expandAndCollapseBttn"
+
             android:layout_marginRight="16dp"
             android:background="?android:selectableItemBackground"
             android:src="@drawable/ic_expand_more_black_24dp"
@@ -117,7 +118,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Expandable part view. Not visible unless expandable icon button is clicked-->
-    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/recyclerItemReceipt_expandable"
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/recyclerItemReceipt_expandableCL"
 
         android:visibility="gone"
         android:layout_marginBottom="20dp"
