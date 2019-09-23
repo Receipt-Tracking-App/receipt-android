@@ -15,6 +15,10 @@ class LoginActivity : AppCompatActivity() {
         btn_register.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
         }
+        btn_login.setOnClickListener {
+            val intent = Intent(this, ListActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
