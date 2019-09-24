@@ -25,8 +25,6 @@ interface ReceiptAPI {
 
 
 
-         //   private const val BASE_URL = MovieConstants.BASE_URL
-
 
 
             fun create(): ReceiptAPI {
