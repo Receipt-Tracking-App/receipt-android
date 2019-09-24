@@ -23,7 +23,7 @@ class SavedReceipt(
     val price: Double = 0.0,
     val date: String = "",
     val location: String = "",
-    val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
+    val receiptServiceType: String
 )
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(tableName = "receipt_media")
