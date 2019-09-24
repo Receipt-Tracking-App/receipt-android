@@ -1,8 +1,8 @@
 package com.receipttracker.model
 
 import android.app.Application
-import com.receipttracker.local.repository.ReceiptRepoInterface
-import com.receipttracker.local.repository.SavedReceiptsDBERepository
+import com.receipttracker.repository.ReceiptRepoInterface
+import com.receipttracker.repository.SavedReceiptsDBERepository
 
 val repo: ReceiptRepoInterface by lazy{
     App.repo!!

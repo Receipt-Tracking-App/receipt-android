@@ -1,4 +1,4 @@
-package com.receipttracker.local.repository
+package com.receipttracker.repository
 
 import androidx.lifecycle.LiveData
 import com.receipttracker.model.SavedReceipt

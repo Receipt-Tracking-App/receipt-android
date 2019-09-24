@@ -1,4 +1,4 @@
-package com.receipttracker.local.repository
+package com.receipttracker.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
