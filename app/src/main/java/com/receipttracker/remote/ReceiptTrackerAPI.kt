@@ -1,7 +1,6 @@
 package com.receipttracker.remote
 
 import com.receipttracker.model.ReceiptOverview
-import com.receipttracker.model.User
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -16,15 +15,8 @@ interface ReceiptTrackerAPI {
 
 
     @POST("/auth/register") // Todo: Add user Model
-    fun userRegistrationPost(@Body request: RequestBody): Call<User> {
-        return userRegistrationPost(request)
-    }
+    fun createUser(@Body request: RequestBody):
 
     @POST("/auth/login") // Todo: Add user Model
-    fun userLoginPost(@Body request: RequestBody): Call<User> {
-        return userLoginPost(request)
-    }
-
-
-
+    fun userLoginPost(@Body request: RequestBody): Call<//> {}
 }

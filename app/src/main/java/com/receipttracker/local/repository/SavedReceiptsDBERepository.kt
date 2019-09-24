@@ -1,10 +1,13 @@
-package com.receipttracker.model
+package com.receipttracker.local.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import com.receipttracker.local.SavedReceiptDB
+import com.receipttracker.model.SavedReceipt
 
-class SavedReceiptsDBERepository (val context: Context): ReceiptRepoInterface{
+class SavedReceiptsDBERepository (val context: Context):
+    ReceiptRepoInterface {
 
     override fun getAllReceipts(): LiveData<List<SavedReceipt>> {
         return database.savedReceiptsDao().getAllReceipts()

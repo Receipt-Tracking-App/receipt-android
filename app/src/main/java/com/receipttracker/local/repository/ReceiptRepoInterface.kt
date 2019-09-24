@@ -1,6 +1,7 @@
-package com.receipttracker.model
+package com.receipttracker.local.repository
 
 import androidx.lifecycle.LiveData
+import com.receipttracker.model.SavedReceipt
 
 interface ReceiptRepoInterface{
 
