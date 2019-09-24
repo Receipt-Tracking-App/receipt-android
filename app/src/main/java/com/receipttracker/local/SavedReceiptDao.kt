@@ -2,7 +2,7 @@ package com.receipttracker.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.receipttracker.model.ReceiptServiceType
+
 import com.receipttracker.model.SavedReceipt
 
 
@@ -13,7 +13,7 @@ interface SavedReceiptDao{
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun createReceipt(savedReceipt: SavedReceipt)
 
-    @Query("SELECT * FROM saved_receipt_table")
+    @Query("SELECT * FROM receipts")
     fun getAllReceipts(): LiveData<List<SavedReceipt>>
 
   //@Query("select* from saved_receipt_table where receiptServiceType = :services")

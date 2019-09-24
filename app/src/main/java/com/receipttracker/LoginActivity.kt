@@ -1,5 +1,6 @@
 package com.receipttracker
 
+import android.app.ListActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
