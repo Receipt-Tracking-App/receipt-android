@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -180,6 +181,7 @@ class RegisterActivity : AppCompatActivity() {
         if (!validatedFirstName || !validatedLastName || !validatedUsername || !validatedEmail || !validatedPassword)
             return
 
+        Toast.makeText(this, "New User successfully created\nWelcome $firstName", Toast.LENGTH_SHORT).show()
         finish()
     }
 }
