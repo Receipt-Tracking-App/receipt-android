@@ -28,7 +28,7 @@ abstract class AppDB : RoomDatabase(){
                     "saved_receipt_database"
                 ).build()
                 INSTANCE = instance
-                return getDatabase(context)
+                return instance
             }
         }
     }
