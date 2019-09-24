@@ -3,7 +3,7 @@ package com.receipttracker.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.receipttracker.local.SavedReceiptDB
+import com.receipttracker.local.AppDB
 import com.receipttracker.model.SavedReceipt
 
 class SavedReceiptsDBERepository (val context: Context):
@@ -28,7 +28,7 @@ class SavedReceiptsDBERepository (val context: Context):
     private val database by lazy {
         Room.databaseBuilder(
             context.applicationContext,
-            SavedReceiptDB::class.java, "receipts_database"
+            AppDB::class.java, "receipts_database"
         ).fallbackToDestructiveMigration().build()
     }
 
