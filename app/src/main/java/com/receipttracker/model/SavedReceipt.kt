@@ -1,6 +1,7 @@
 package com.receipttracker.model
 
 import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.json.JSONException
@@ -11,10 +12,10 @@ import org.json.JSONObject
     val date: String,
     val location: String,
     val service: String*/
-@Entity(tableName = "saved_receipt_table")
+@Entity(tableName = "receipts")
 class SavedReceipt(
-    @PrimaryKey(autoGenerate = true) @NonNull
-    var receiptId: Int = 0,
+    @PrimaryKey(autoGenerate = true)  @ColumnInfo(name = "receipt_id") @NonNull
+    var receiptId: Int? = null,
     val dateCreated: Int = 0,
     val dateOfLastUpdate: Int = 0,
     val notes: String = "",
@@ -24,60 +25,16 @@ class SavedReceipt(
     val location: String = "",
     val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
 )
-//{
-    /*companion object{
-        const val INVALID_ID = 0
-    }
-    val merchant: String = ""
-    val notes: String = ""
-    var price: String = ""
-    var date: String = ""
-    var location: String = ""
-    var service: String = ""
-    @PrimaryKey(autoGenerate = true) @NonNull
-    var receiptId: Int = 0
-
-
-
-    constructor(price: String, date: String, location: String, service: String, receiptId: Int){
-        this.price = price
-        this.date = date
-        this.location = location
-        this.service = service
-        this.receiptId = receiptId
-    }
-    constructor(jsonObject: JSONObject){
-        try {
-            this.service = jsonObject.getString("service")
-        }catch (e: JSONException){
-            this.service = ""
-        }
-        try{
-            this.location = jsonObject.getString("location")
-        }catch (e: JSONException){
-            this.location = ""
-        }
-        try {
-            this.date = jsonObject.getString("date")
-        }catch (e: JSONException){
-            this.date = ""
-        }
-        try {
-            this.price = jsonObject.getString("price")
-        }catch (e: JSONException){
-            this.price = ""
-        }
-        try {
-            this.receiptId = jsonObject.getInt("1")
-        }catch (e: JSONException){
-            this.receiptId = 1
-        }
-
-
-    }
-
-
-} */
+//Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
+@Entity(tableName = "receipt_media")
+class ReceiptMedia(
+    @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "receipt_id")
+    var receiptId: Int? = null,
+    @ColumnInfo(name = "uri")
+    var receiptPhotoUri: String,
+    @ColumnInfo(name = "description")
+    var description: String
+)
 
 enum class ReceiptServiceType (service: String) {
     Business("business"),
