@@ -2,7 +2,7 @@ package com.receipttracker.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.receipttracker.model.ReceiptServiceType
+
 import com.receipttracker.model.SavedReceipt
 
 
