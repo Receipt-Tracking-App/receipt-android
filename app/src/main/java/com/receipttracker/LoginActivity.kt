@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -88,6 +89,13 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, ListActivity::class.java))
     }
 
-    
+    override fun onPostResume() {
+        text_input_username.error = null
+        text_input_username.isErrorEnabled = false
 
+        text_input_password.error = null
+        text_input_password.isErrorEnabled = false
+
+        super.onPostResume()
+    }
 }
