@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //Checks to see if the entered username is okay or not.
     private fun validateUsername():Boolean{
         //Gets the text from the username text input layout
         username = text_input_username.editText?.text.toString().trim()
@@ -58,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //Checks to see if the entered password is okay or not.
     private fun validatePassword():Boolean{
         //Gets the text from the password text input layout
         password = text_input_password.editText?.text.toString().trim()
