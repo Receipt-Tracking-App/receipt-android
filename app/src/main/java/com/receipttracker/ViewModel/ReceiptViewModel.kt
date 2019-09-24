@@ -13,7 +13,7 @@ class ReceiptViewModel : ViewModel(){
     }
     fun readAllReceipts() : LiveData<List<SavedReceipt>>{
 
-        return repo.readAllReceipts()
+        return repo.getAllReceipts()
     }
     fun createReceipt(receipt: SavedReceipt){
         repo.createReceipt((receipt))

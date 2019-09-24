@@ -25,7 +25,7 @@ class DetailActivity : AppCompatActivity() {
     }
     fun createTextView(savedReceipt: SavedReceipt): TextView{
         val view = TextView(this)
-        view.text = savedReceipt.service
+        view.text = savedReceipt.merchant
         view.tag = savedReceipt.receiptId
         view.setOnLongClickListener {
             DeleteAsyncTask(viewModel).execute(savedReceipt)
