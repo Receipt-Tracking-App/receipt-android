@@ -27,7 +27,7 @@ abstract class SavedReceiptDB : RoomDatabase(){
                     "saved_receipt_database"
                 ).build()
                 INSTANCE = instance
-                return getDatabase(context)
+                return instance
             }
         }
     }
