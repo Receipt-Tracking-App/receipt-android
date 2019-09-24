@@ -88,4 +88,6 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, ListActivity::class.java))
     }
 
+    
+
 }

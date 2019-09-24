@@ -3,6 +3,7 @@ package com.receipttracker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -101,6 +102,10 @@ class RegisterActivity : AppCompatActivity() {
         if(email.isEmpty()){
             text_input_email_register.error = "Field can't be empty"
             validatedEmail = false
+            return false
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            text_input_email_register.error = "Invalid Email Format"
             return false
         }
         else{
