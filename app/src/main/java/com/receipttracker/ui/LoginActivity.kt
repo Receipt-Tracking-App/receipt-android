@@ -1,8 +1,9 @@
-package com.receipttracker
+package com.receipttracker.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.receipttracker.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Move to the register activity when the register button is clicked on
         btn_register.setOnClickListener {
-            startActivity(Intent(this,RegisterActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
     }

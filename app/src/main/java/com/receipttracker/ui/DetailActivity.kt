@@ -1,4 +1,4 @@
-package com.receipttracker
+package com.receipttracker.ui
 
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.SavedReceipt
 import java.lang.ref.WeakReference

@@ -15,6 +15,8 @@ import org.json.JSONObject
 class SavedReceipt(
     @PrimaryKey(autoGenerate = true) @NonNull
     var receiptId: Int = 0,
+    val dateCreated: Int = 0,
+    val dateOfLastUpdate: Int = 0,
     val notes: String = "",
     val merchant: String = "",
     val price: Double = 0.0,
