@@ -15,10 +15,10 @@ interface ReceiptTrackerAPI {
 
 
     @POST("/auth/register") // Todo: Add user Model
-    fun userRegistrationPost(@Body request: RequestBody): Call<//>
+    fun userRegistrationPost(@Body request: RequestBody): Call<//> {}
 
     @POST("/auth/login") // Todo: Add user Model
-    fun userLoginPost(@Body request: RequestBody): Call<//>
+    fun userLoginPost(@Body request: RequestBody): Call<//> {}
 
 
 
