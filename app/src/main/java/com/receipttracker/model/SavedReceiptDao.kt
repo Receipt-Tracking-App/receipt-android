@@ -15,8 +15,8 @@ interface SavedReceiptDao{
     @Query("SELECT * FROM saved_receipt_table")
     fun getAllReceipts(): LiveData<List<SavedReceipt>>
 
-   @Query("select* from saved_receipt_table where receiptServiceType = :services")
-   fun searchFilterByService(services: ReceiptServiceType)
+  //@Query("select* from saved_receipt_table where receiptServiceType = :services")
+  // fun searchFilterByService(services: ReceiptServiceType)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateReceipt(savedReceipt: SavedReceipt)

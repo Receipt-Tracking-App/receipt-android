@@ -54,7 +54,7 @@ class ReceiptRecyclerViewAdapter(private var savedReceiptList: List<SavedReceipt
 
     override fun onBindViewHolder(holder: ReceiptRecyclerViewAdapter.ViewHolder, position: Int) {
 
-        holder.priceTextView.text = savedReceiptList[position].price
+        holder.priceTextView.text = savedReceiptList[position].price.toString()
         holder.dateTextView.text = savedReceiptList[position].date
         holder.locationTextView.text = savedReceiptList[position].location
         holder.expandAndCollapseBttn.setOnClickListener {

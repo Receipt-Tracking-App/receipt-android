@@ -3,8 +3,6 @@ package com.receipttracker.model
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.json.JSONException
-import org.json.JSONObject
 
 /*    val price: String,
     val receiptId: Int = 0,
@@ -19,8 +17,8 @@ class SavedReceipt(
     val merchant: String = "",
     val price: Double = 0.0,
     val date: String = "",
-    val location: String = "",
-    val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
+    val location: String = ""
+//    val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
 )
 //{
     /*companion object{
@@ -77,9 +75,9 @@ class SavedReceipt(
 
 } */
 
-enum class ReceiptServiceType (service: String) {
-    Business("business"),
-    Food("food"),
-    Shopping("shopping"),
-    Travel("travel")
-}
+//enum class ReceiptServiceType(s: String) {
+    //Business("business"),
+  //  Food("food"),
+   // Shopping("shopping"),
+   // Travel("travel")
+//}

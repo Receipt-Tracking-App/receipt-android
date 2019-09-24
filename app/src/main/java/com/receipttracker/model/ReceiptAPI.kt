@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-interface MovieApi {
+interface ReceiptAPI {
 
     @GET("location")
 
@@ -29,7 +29,7 @@ interface MovieApi {
 
 
 
-            fun create(): MovieApi {
+            fun create(): ReceiptAPI {
 
 
 
@@ -67,7 +67,7 @@ interface MovieApi {
 
 
 
-                return retrofit.create(MovieApi::class.java)
+                return retrofit.create(ReceiptAPI::class.java)
 
             }
 
