@@ -6,16 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(
-    tableName = "user",
-    foreignKeys = arrayOf(
-        ForeignKey(
-            entity = User:: class,
-            parentColumns = arrayOf("groupId"),
-            childColumns = arrayOf("userGroupId")
-        )
-    )
-)
+@Entity(tableName = "user")
 data class User (
 
     @PrimaryKey(autoGenerate = true)
@@ -34,10 +25,10 @@ data class User (
     val dateUserAccountCreated: Int? = null,
 
     @SerializedName("date_last_updated")
-    val dateUserAccountLastUpdated: Int? = null,
+    val dateUserAccountLastUpdated: Int? = null
 
-    @SerializedName("user_groupID")
-    val userGroupID: Int? = null
+    // @SerializedName("group")
+    // val userGroup: UserGroups? = null
 )
 
 @Entity(tableName = "user_groups")
