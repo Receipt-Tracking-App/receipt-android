@@ -1,4 +1,4 @@
-package com.receipttracker.model.ui
+package com.receipttracker.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -54,9 +54,11 @@ class ReceiptRecyclerViewAdapter(private var savedReceiptList: List<SavedReceipt
 
     override fun onBindViewHolder(holder: ReceiptRecyclerViewAdapter.ViewHolder, position: Int) {
 
+        holder.notesTextView.text = savedReceiptList[position].notes
         holder.priceTextView.text = savedReceiptList[position].price.toString()
         holder.dateTextView.text = savedReceiptList[position].date
         holder.locationTextView.text = savedReceiptList[position].location
+        holder.businessNameTextView.text = savedReceiptList[position].merchant
         holder.expandAndCollapseBttn.setOnClickListener {
             holder.expandAndCollapseBttnOnClick()
         }

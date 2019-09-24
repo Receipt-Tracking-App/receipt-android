@@ -1,8 +1,9 @@
-package com.receipttracker.model
+package com.receipttracker.local
 
-import android.app.Service
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.receipttracker.model.ReceiptServiceType
+import com.receipttracker.model.SavedReceipt
 
 
 @Dao

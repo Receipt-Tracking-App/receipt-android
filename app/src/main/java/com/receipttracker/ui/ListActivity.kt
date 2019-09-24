@@ -1,8 +1,9 @@
-package com.receipttracker
+package com.receipttracker.ui
 
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
