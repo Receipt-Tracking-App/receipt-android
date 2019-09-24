@@ -1,5 +1,6 @@
 package com.receipttracker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_login.*
@@ -30,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
             validateUsername()
             validateEmail()
             validatePassword()
-            //finish()
+            confirmRegister()
         }
 
     }
@@ -128,5 +129,14 @@ class RegisterActivity : AppCompatActivity() {
             validatedPassword = true
             return true
         }
+    }
+
+    //Checks to see if all the fields are correct or not. If so, return back to the login page.
+    private fun confirmRegister(){
+        //If any of the entered information isn't entered properly, prevent the user from successfully registering.
+        if (!validatedFirstName || !validatedLastName || !validatedUsername || !validatedEmail || !validatedPassword)
+            return
+
+        finish()
     }
 }
