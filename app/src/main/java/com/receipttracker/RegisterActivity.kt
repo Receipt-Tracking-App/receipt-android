@@ -38,7 +38,6 @@ class RegisterActivity : AppCompatActivity() {
         btn_cancel_registration.setOnClickListener {
             finish()
         }
-
     }
 
     //Checks to see if the entered first name is okay or not.
