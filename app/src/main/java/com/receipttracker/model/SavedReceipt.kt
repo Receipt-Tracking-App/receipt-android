@@ -22,8 +22,8 @@ class SavedReceipt(
     val merchant: String = "",
     val price: Double = 0.0,
     val date: String = "",
-    val location: String = ""
-   // val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
+    val location: String = "",
+    val receiptServiceType: String
 )
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(tableName = "receipt_media")
@@ -36,9 +36,9 @@ class ReceiptMedia(
     var description: String
 )
 
-//enum class ReceiptServiceType (service: String) {
-//    Business("business"),
-//    Food("food"),
-//    Shopping("shopping"),
-//    Travel("travel")
-//}
+enum class ReceiptServiceType (service: String) {
+    Business("business"),
+    Food("food"),
+    Shopping("shopping"),
+    Travel("travel")
+}
