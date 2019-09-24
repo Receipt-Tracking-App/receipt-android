@@ -55,6 +55,14 @@ class LoginActivity : AppCompatActivity() {
             validatedUsername = false
             return false
         }
+        else if(username.length <4){
+            text_input_username.error = "Username should be at least four characters"
+            return false
+        }
+        else if(username.length>12){
+            text_input_username.error ="Username can't be more than 12 characters"
+            return false
+        }
         else{
             //Removes the error message if it already exists
             text_input_username.error = null
@@ -72,6 +80,14 @@ class LoginActivity : AppCompatActivity() {
         if(password.isEmpty()){
             text_input_password.error = "Field can't be empty"
             validatedPassword = false
+            return false
+        }
+        else if(password.length<4){
+            text_input_password.error = "Password should be at least four characters"
+            return false
+        }
+        else if(password.length>12){
+            text_input_password.error = "Password can't be more than 12 characters"
             return false
         }
         else{
@@ -93,6 +109,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, ListActivity::class.java))
     }
 
+    //Removes the error messages when moving into the login activity
     override fun onPostResume() {
         text_input_username.error = null
         text_input_username.isErrorEnabled = false

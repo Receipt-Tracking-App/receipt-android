@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -38,7 +39,6 @@ class RegisterActivity : AppCompatActivity() {
         btn_cancel_registration.setOnClickListener {
             finish()
         }
-
     }
 
     //Checks to see if the entered first name is okay or not.
@@ -49,6 +49,11 @@ class RegisterActivity : AppCompatActivity() {
         if(firstName.isEmpty()){
             text_input_first_name_register.error = "Field can't be empty"
             validatedFirstName = false
+            return false
+        }
+
+        else if(firstName.length <2){
+            text_input_first_name_register.error = "First name must be at least two characters"
             return false
         }
         else{
@@ -70,30 +75,17 @@ class RegisterActivity : AppCompatActivity() {
             validatedLastName = false
             return false
         }
+
+        else if(lastName.length <2){
+            text_input_last_name_register.error = "Last name must be at least two characters"
+            return false
+        }
+
         else{
             //Removes the error message if it already exists
             text_input_last_name_register.error = null
             text_input_last_name_register.isErrorEnabled = false
             validatedLastName= true
-            return true
-        }
-    }
-
-    //Checks to see if the entered username is okay or not.
-    private fun validateUsername():Boolean{
-        //Gets the text from the username text input layout
-        username = text_input_username_register.editText?.text.toString().trim()
-
-        if(username.isEmpty()){
-            text_input_username_register.error = "Field can't be empty"
-            validatedUsername = false
-            return false
-        }
-        else{
-            //Removes the error message if it already exists
-            text_input_username_register.error = null
-            text_input_username_register.isErrorEnabled = false
-            validatedUsername = true
             return true
         }
     }
@@ -121,6 +113,38 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    //Checks to see if the entered username is okay or not.
+    private fun validateUsername():Boolean{
+        //Gets the text from the username text input layout
+        username = text_input_username_register.editText?.text.toString().trim()
+
+        if(username.isEmpty()){
+            text_input_username_register.error = "Field can't be empty"
+            validatedUsername = false
+            return false
+        }
+
+        else if(username.length<4){
+            text_input_username_register.error = "Username must be at least four characters"
+            return false
+        }
+
+        //As of the current time of this else if statement, the current max characters is six.
+        //Backend person said that he would change it to 12 in the future.
+        else if(username.length>12){
+            text_input_username_register.error = "Username can't be more than 12 characters"
+            return false
+        }
+
+        else{
+            //Removes the error message if it already exists
+            text_input_username_register.error = null
+            text_input_username_register.isErrorEnabled = false
+            validatedUsername = true
+            return true
+        }
+    }
+
     //Checks to see if the entered password is okay or not.
     private fun validatePassword():Boolean{
         //Gets the text from the password text input layout
@@ -131,6 +155,17 @@ class RegisterActivity : AppCompatActivity() {
             validatedPassword = false
             return false
         }
+
+        else if(password.length<4){
+            text_input_password_register.error = "Password must be at least four characters"
+            return false
+        }
+
+        else if(password.length>12){
+            text_input_password_register.error = "Password can't be more than 12 characters"
+            return false
+        }
+
         else{
             //Removes the error message if it already exists
             text_input_password_register.error = null
@@ -146,6 +181,7 @@ class RegisterActivity : AppCompatActivity() {
         if (!validatedFirstName || !validatedLastName || !validatedUsername || !validatedEmail || !validatedPassword)
             return
 
+        Toast.makeText(this, "New User successfully created\nWelcome $firstName", Toast.LENGTH_SHORT).show()
         finish()
     }
 }
