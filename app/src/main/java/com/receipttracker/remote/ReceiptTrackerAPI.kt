@@ -2,6 +2,7 @@ package com.receipttracker.remote
 
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.User
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -26,17 +27,12 @@ interface ReceiptTrackerService {
 
     companion object {
 
-        private const val BASE_URL = "https://lambda-receipt-tracker.herokuapp.com/api"
+        const val BASE_URL = "https://lambda-receipt-tracker.herokuapp.com/api"
 
         private val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClient())
             .baseUrl(BASE_URL)
             .build()
-
-        object ReceiptTracerApi {
-            val retrofitService : ReceiptTrackerService by lazy {
-                retrofit.create(ReceiptTrackerService::class.java)
-            }
-        }
     }
 }
