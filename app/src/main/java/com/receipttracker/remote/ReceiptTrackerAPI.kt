@@ -15,16 +15,9 @@ interface ReceiptTrackerAPI {
     fun getUserReceiptsByID(@Path ("id") receiptId: Int) : List<ReceiptOverview>
 
 
-    @POST("/auth/register") // Todo: Add user Model
-    fun userRegistrationPost(@Body request: RequestBody): Call<User> {
-        return userRegistrationPost(request)
-    }
+    @POST("/auth/register")
+    fun createUser(@Body request: RequestBody): Call<User>
 
-    @POST("/auth/login") // Todo: Add user Model
-    fun userLoginPost(@Body request: RequestBody): Call<User> {
-        return userLoginPost(request)
-    }
-
-
-
+    @POST("/auth/login")
+    fun userLoginPost(@Body request: RequestBody): Call<User>
 }
