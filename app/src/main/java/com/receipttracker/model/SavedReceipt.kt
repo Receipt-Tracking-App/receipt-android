@@ -23,10 +23,8 @@ class SavedReceipt(
     val price: Double = 0.0,
     val date: String = "",
 
-    val location: String = ""
-   // val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
-=======
     val location: String = "",
+
     val receiptServiceType: String
 
 )
