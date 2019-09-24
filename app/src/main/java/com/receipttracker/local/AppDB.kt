@@ -4,10 +4,12 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import android.content.Context
 import androidx.room.Room
+import com.receipttracker.model.Groups
+import com.receipttracker.model.ReceiptMedia
 import com.receipttracker.model.SavedReceipt
 import com.receipttracker.model.User
 
-@Database(entities = arrayOf(User::class, SavedReceipt::class), version = 2, exportSchema = false)
+@Database(entities = arrayOf(User::class, SavedReceipt::class, Groups::class, ReceiptMedia::class), version = 2, exportSchema = false)
 abstract class AppDB : RoomDatabase(){
     abstract fun savedReceiptsDao() : SavedReceiptDao
 
