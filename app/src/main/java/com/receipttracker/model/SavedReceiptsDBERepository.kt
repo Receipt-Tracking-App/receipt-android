@@ -5,12 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 
 class SavedReceiptsDBERepository (val context: Context): ReceiptRepoInterface{
-    override fun createReceipt(receipt: SavedReceipt) {
-        database.savedReceiptsDao().createReceipt(receipt)
+
+    override fun getAllReceipts(): LiveData<List<SavedReceipt>> {
+        return database.savedReceiptsDao().getAllReceipts()
     }
 
-    override fun readAllReceipts(): LiveData<List<SavedReceipt>> {
-        return database.savedReceiptsDao().readAllReceipts()
+    override fun createReceipt(receipt: SavedReceipt) {
+        database.savedReceiptsDao().createReceipt(receipt)
     }
 
     override fun updateReceipt(savedReceipt: SavedReceipt) {

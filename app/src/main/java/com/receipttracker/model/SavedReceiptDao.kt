@@ -12,17 +12,16 @@ interface SavedReceiptDao{
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun createReceipt(savedReceipt: SavedReceipt)
 
-    @Query("select * from SavedReceipt")
-    fun readAllReceipts(): LiveData<List<SavedReceipt>>
+    @Query("SELECT * FROM saved_receipt_table")
+    fun getAllReceipts(): LiveData<List<SavedReceipt>>
 
-   // @Query("select* from SavedReceipt where service = :services")
-   // fun searchFilterByService(services: Services)
+   @Query("select* from saved_receipt_table where receiptServiceType = :services")
+   fun searchFilterByService(services: ReceiptServiceType)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateReceipt(savedReceipt: SavedReceipt)
 
     @Delete
-
     fun deleteReceipt(savedReceipt: SavedReceipt)
 
 

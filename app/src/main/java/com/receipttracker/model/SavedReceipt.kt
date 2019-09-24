@@ -11,17 +11,30 @@ import org.json.JSONObject
     val date: String,
     val location: String,
     val service: String*/
-@Entity
-class SavedReceipt{
-    companion object{
+@Entity(tableName = "saved_receipt_table")
+class SavedReceipt(
+    @PrimaryKey(autoGenerate = true) @NonNull
+    var receiptId: Int = 0,
+    val notes: String = "",
+    val merchant: String = "",
+    val price: Double = 0.0,
+    val date: String = "",
+    val location: String = "",
+    val receiptServiceType: ReceiptServiceType = ReceiptServiceType.Food
+)
+//{
+    /*companion object{
         const val INVALID_ID = 0
     }
+    val merchant: String = ""
+    val notes: String = ""
     var price: String = ""
     var date: String = ""
     var location: String = ""
     var service: String = ""
     @PrimaryKey(autoGenerate = true) @NonNull
     var receiptId: Int = 0
+
 
 
     constructor(price: String, date: String, location: String, service: String, receiptId: Int){
@@ -62,7 +75,11 @@ class SavedReceipt{
     }
 
 
-}enum class Services (services: String){
+} */
+
+enum class ReceiptServiceType (service: String) {
     Business("business"),
-    Food("food")
+    Food("food"),
+    Shopping("shopping"),
+    Travel("travel")
 }
