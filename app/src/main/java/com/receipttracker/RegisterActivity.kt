@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         else if(firstName.length <2){
-            text_input_first_name_register.error = "First name must be at least two characters long"
+            text_input_first_name_register.error = "First name must be at least two characters"
             return false
         }
         else{
@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         else if(lastName.length <2){
-            text_input_last_name_register.error = "Last name must be at least two characters long"
+            text_input_last_name_register.error = "Last name must be at least two characters"
             return false
         }
 
@@ -124,14 +124,14 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         else if(username.length<4){
-            text_input_username_register.error = "Username must be at least four characters long"
+            text_input_username_register.error = "Username must be at least four characters"
             return false
         }
 
         //As of the current time of this else if statement, the current max characters is six.
         //Backend person said that he would change it to 12 in the future.
         else if(username.length>12){
-            text_input_username_register.error = "Username can't be more than 12 characters long"
+            text_input_username_register.error = "Username can't be more than 12 characters"
             return false
         }
 
@@ -156,12 +156,12 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         else if(password.length<4){
-            text_input_password_register.error = "Password must be at least 4 characters long"
+            text_input_password_register.error = "Password must be at least four characters"
             return false
         }
 
         else if(password.length>12){
-            text_input_password_register.error = "Password can't be more than 12 characters long"
+            text_input_password_register.error = "Password can't be more than 12 characters"
             return false
         }
 
