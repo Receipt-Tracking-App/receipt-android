@@ -2,10 +2,16 @@ package com.receipttracker.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
-@Entity(tableName = "user_groups")
+@Entity(
+    tableName = "user_groups",
+    indices = arrayOf(
+        Index(value = ["group_id"], unique = true)
+    )
+)
 data class Groups (
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "group_id")
