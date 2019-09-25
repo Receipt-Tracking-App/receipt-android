@@ -29,6 +29,18 @@ class SavedReceipt(
     @PrimaryKey(autoGenerate = true)  @ColumnInfo(name = "receipt_id") @NonNull
     var receiptId: Int? = null,
 
+    val dateCreated: Int = 0,
+    val dateOfLastUpdate: Int = 0,
+    val notes: String = "",
+    val merchant: String = "",
+    val price: Double = 0.0,
+    val date: String = "",
+
+    val location: String = "",
+
+    val receiptServiceType: String
+
+
     val purchaseDate: Int,
 
     val merchant: String,
@@ -39,6 +51,7 @@ class SavedReceipt(
 
     @ColumnInfo(name = "user_id_for_receipt")
     val userId : Int
+
 
 )
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
