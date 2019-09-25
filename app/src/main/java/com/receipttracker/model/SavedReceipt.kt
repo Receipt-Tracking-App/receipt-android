@@ -38,16 +38,14 @@ class SavedReceipt(
 
     val location: String = "",
 
-    val receiptServiceType: String
+    val receiptServiceType: String,
 
 
     val purchaseDate: Int,
 
-    val merchant: String,
 
     val amount: Float,
 
-    val notes: String,
 
     @ColumnInfo(name = "user_id_for_receipt")
     val userId : Int

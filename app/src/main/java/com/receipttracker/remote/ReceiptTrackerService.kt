@@ -15,27 +15,27 @@ import retrofit2.http.*
 
 interface ReceiptTrackerService {
 
-    @GET("/receipts/users/{id}")
+    @GET("receipts/users/{id}")
     fun getUserReceiptsByID(@Path ("id") receiptId: Int) : List<SavedReceipt>
 
-    @POST("/receipts")
+    @POST("receipts")
     fun createNewReceipt(@Body request: RequestBody): Call<SavedReceipt>
 
-    @PUT("/receipts/{id}")
+    @PUT("receipts/{id}")
     fun updateReceipt(@Body request: RequestBody): Call<SavedReceipt>
 
     //@POST("/receipts/{id}/upload")
 
 
-    @POST("/auth/register")
+    @POST("auth/register")
     fun createUser(@Body request: RequestBody): Call<User>
 
-    @POST("/auth/login")
+    @POST("auth/login")
     fun userLoginPost(@Body userLogin: UserLogin) : Call<User>
 
     companion object {
 
-        const val BASE_URL = "https://lambda-receipt-tracker.herokuapp.com/api"
+        const val BASE_URL = "https://lambda-receipt-tracker.herokuapp.com/api/"
 
         private val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
