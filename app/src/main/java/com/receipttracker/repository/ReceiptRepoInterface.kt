@@ -2,11 +2,9 @@ package com.receipttracker.repository
 
 import androidx.lifecycle.LiveData
 import com.receipttracker.model.SavedReceipt
+import com.receipttracker.repository.common.BaseRepoInterface
 
-interface ReceiptRepoInterface{
+interface ReceiptRepoInterface : BaseRepoInterface<SavedReceipt> {
 
-    fun createReceipt(receipt: SavedReceipt)
     fun getAllReceipts(): LiveData<List<SavedReceipt>>
-    fun updateReceipt(savedReceipt: SavedReceipt)
-    fun deleteReceipt(savedReceipt: SavedReceipt)
 }

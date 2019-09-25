@@ -2,6 +2,7 @@ package com.receipttracker.model
 
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity(
         tableName = "user",
@@ -24,17 +25,20 @@ import com.google.gson.annotations.SerializedName
 
 data class User (
 
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
-    var id: Int? = null,
+    @PrimaryKey @ColumnInfo(name = "id") @SerializedName("userId", alternate = ["username"])
+    var id: Int,
 
-    @SerializedName("first_name")
+    @SerializedName("email")
+    val email: String,
+
+    @SerializedName("firstName")
     val firstName: String,
 
-    @SerializedName("last_name")
+    @SerializedName("lastName")
     val lastName: String,
 
-    @SerializedName("username")
-    val username: String,
+    @SerializedName("password")
+    val password: String,
 
     @SerializedName("created_at")
     val dateUserAccountCreated: Int? = null,
@@ -44,6 +48,10 @@ data class User (
 
     @ColumnInfo(name = "user_group_id")
     @SerializedName("user_group_id")
-    val userGroupId: Int
-)
+    val userGroupId: Int? = null
+) : Serializable
 
+class NewUser (
+    userId: String,
+    password: String
+)
