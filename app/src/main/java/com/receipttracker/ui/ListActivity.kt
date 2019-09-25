@@ -30,17 +30,17 @@ class ListActivity : AppCompatActivity(), Callback<ReceiptOverview> {
 
     }
 
-    private fun getReceiptByBusiness(receiptName: String) {
-        viewModel.receipts
+ //  private fun getReceiptByBusiness(receiptName: String) {
+ //      viewModel.receipts
 
-    }
+ //  }
 
     class CreateAsyncTask(viewModel: ReceiptViewModel) : AsyncTask<SavedReceipt, Void, Unit>() {
         private val viewModel = WeakReference(viewModel)
         override fun doInBackground(vararg p0: SavedReceipt?) {
             if (p0.isNotEmpty()) {
                 p0[0]?.let {
-                    viewModel.get()?.createReceipt(it)
+                    viewModel.get()?.receipts
                 }
 
             }
