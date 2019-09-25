@@ -1,25 +1,25 @@
 package com.receipttracker.model
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.time.LocalDateTime
 
-/*    val price: String,
-    val receiptId: Int = 0,
-    val date: String,
-    val location: String,
-    val service: String*/
+
 @Entity(
     tableName = "receipts",
+    indices = arrayOf(
+
+        Index(
+            value = ["user_id_for_receipt", "receipt_id"] // indexes these specific values so the db will query faster.
+        )
+
+    ),
     foreignKeys = arrayOf(
         ForeignKey(
             entity = User::class,
-            parentColumns = arrayOf("id"),
+            parentColumns = arrayOf("id"), // References id in user class. creates a relation between the id and userID value through use of a foreign key
             childColumns = arrayOf("user_id_for_receipt")
         )
     )
@@ -49,10 +49,6 @@ class SavedReceipt(
 
     val notes: String,
 
-    val receiptCreatedAt: Int,
-
-    val receiptUpdatedAt: Int,
-
     @ColumnInfo(name = "user_id_for_receipt")
     val userId : Int
 
@@ -62,6 +58,11 @@ class SavedReceipt(
 @Entity(
     tableName = "receipt_media",
 
+    indices = arrayOf(
+        Index(
+            value = ["id", "receipt_id"]
+        )
+    ),
     foreignKeys = arrayOf (
         ForeignKey(
             entity = SavedReceipt::class,
@@ -84,10 +85,3 @@ class ReceiptMedia(
     @ColumnInfo(name = "description")
     var description: String
 )
-
-enum class ReceiptServiceType (service: String) {
-    Business("business"),
-    Food("food"),
-    Shopping("shopping"),
-    Travel("travel")
-}
