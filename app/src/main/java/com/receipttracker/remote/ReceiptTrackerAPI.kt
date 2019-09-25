@@ -1,6 +1,7 @@
 package com.receipttracker.remote
 
 import com.receipttracker.model.ReceiptOverview
+import com.receipttracker.model.SavedReceipt
 import com.receipttracker.model.User
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -8,15 +9,20 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ReceiptTrackerService {
 
     @GET("/receipts/users/{id}")
-    fun getUserReceiptsByID(@Path ("id") receiptId: Int) : List<ReceiptOverview>
+    fun getUserReceiptsByID(@Path ("id") receiptId: Int) : List<SavedReceipt>
+
+    @POST("/receipts")
+    fun createNewReceipt(@Body request: RequestBody): Call<SavedReceipt>
+
+    @PUT("/receipts/{id}")
+    fun updateReceipt(@Body request: RequestBody): Call<SavedReceipt>
+
+    //@POST("/receipts/{id}/upload")
 
 
     @POST("/auth/register")
