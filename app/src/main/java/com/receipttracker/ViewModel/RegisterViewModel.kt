@@ -1,13 +1,12 @@
 package com.receipttracker.ViewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.receipttracker.ViewModel.common.BaseViewModel
 import com.receipttracker.model.NewUser
 import com.receipttracker.model.User
 
 class RegisterViewModel : BaseViewModel<User>() {
 
+    val registerValidation = RegisterValidation()
     val newUser: NewUser? = null
 
     override fun create(obj: User) {
@@ -24,20 +23,9 @@ class RegisterViewModel : BaseViewModel<User>() {
 
 
 
-    fun validateFirstName(): ValidationWithMessage {
 
-        val user = newUser
-        val validationWithMessage =
-            when {
-                user != null -> when {
-                    user.firstName.isNullOrBlank() -> ValidationWithMessage("Field can't be empty", false)
-                    user.firstName.length < 2 -> ValidationWithMessage("Must be at leas 2 characters", false)
-                    else -> ValidationWithMessage(null, true)
-                }
-                else -> ValidationWithMessage("Error", false)
-            }
-        return validationWithMessage
-    }
+
+
 
 }
 
