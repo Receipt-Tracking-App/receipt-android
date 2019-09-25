@@ -12,4 +12,6 @@ interface UserRepoInterface : BaseRepoInterface<User> {
     fun loginUser(user: UserLogin)
 
     fun nukeUserTable()
+
+    fun deleteOldUsers()
 }

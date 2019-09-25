@@ -42,6 +42,9 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
     override fun nukeUserTable() {
         database.userDao().nukeUserTable()
     }
+    override fun deleteOldUsers() {
+        database.userDao().deleteOldUsers()
+    }
 
     // Retrofit
     override fun loginUser(user: UserLogin) {
@@ -55,13 +58,26 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful && response.body() != null) {
 
-                    val newLoginUser = User(id = response.body()!!.id, )
+                  /*  val storedUsers = database.userDao().getAllStoredUsers()
+                    if(storedUsers.isNotEmpty()) {
+                       storedUsers.forEach {
+                        if (response.body()?.id == it.id) {
+                               database.userDao().update(it)
+                           }
+                       }
+                    } */
+
+                    val newLoginUser = User(id = response.body()!!.id)
                     create(newLoginUser)
+                    deleteOldUsers()
                 }
             }
 
         })
     }
+
+
+
 
 
 }
