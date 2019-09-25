@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.SavedReceipt
+import kotlinx.android.synthetic.main.activity_detail.*
 import java.lang.ref.WeakReference
 
 class DetailActivity : AppCompatActivity() {
@@ -28,13 +29,17 @@ class DetailActivity : AppCompatActivity() {
         val view = TextView(this)
         view.text = savedReceipt.merchant
         view.tag = savedReceipt.receiptId
+
         view.setOnLongClickListener {
             DeleteAsyncTask(viewModel).execute(savedReceipt)
             return@setOnLongClickListener true
         }
         return view
 
+
+
     }
+
     class DeleteAsyncTask(viewModel: ReceiptViewModel): AsyncTask<SavedReceipt, Void, Unit>(){
         private val viewModel = WeakReference(viewModel)
         override fun doInBackground(vararg p0: SavedReceipt?) {
@@ -61,6 +66,13 @@ class DetailActivity : AppCompatActivity() {
 
 
     private fun updateForEntries(savedReceipt: List<SavedReceipt>){
+
+            receipt_list.removeAllViews()
+
+        savedReceipt.forEach {savedReceipt ->
+            receipt_list.addView(createTextView(savedReceipt))
+        }
+
 
     }
     class ReadAllAsyncTask(activity: DetailActivity): AsyncTask<Void, Void, LiveData<List<SavedReceipt>>?>(){
