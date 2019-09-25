@@ -7,9 +7,11 @@ import com.receipttracker.repository.common.BaseRepoInterface
 
 interface UserRepoInterface : BaseRepoInterface<User> {
 
-    fun getUserData(id: String): LiveData<User>
+    fun getUserData(id: Int): LiveData<User>
 
     fun loginUser(user: UserLogin)
 
     fun nukeUserTable()
+
+    fun deleteOldUsers()
 }

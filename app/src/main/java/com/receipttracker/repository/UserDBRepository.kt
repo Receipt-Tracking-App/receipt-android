@@ -8,13 +8,12 @@ import com.receipttracker.model.User
 import com.receipttracker.model.UserLogin
 import com.receipttracker.remote.ReceiptTrackerService
 import com.receipttracker.repository.common.BaseRepoInterface
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserDBRepository(val context: Context) : UserRepoInterface {
-
-
 
     private val database = AppDB.getDatabase(context)
     private val apiFactory = apiFactory()
@@ -25,7 +24,7 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
     }
 
     // Room
-    override fun getUserData(id: String): LiveData<User> {
+    override fun getUserData(id: Int): LiveData<User> {
         return database.userDao().getUserData(id)
     }
 
@@ -43,6 +42,9 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
     override fun nukeUserTable() {
         database.userDao().nukeUserTable()
     }
+    override fun deleteOldUsers() {
+        database.userDao().deleteOldUsers()
+    }
 
     // Retrofit
     override fun loginUser(user: UserLogin) {
@@ -56,13 +58,26 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful && response.body() != null) {
 
+                  /*  val storedUsers = database.userDao().getAllStoredUsers()
+                    if(storedUsers.isNotEmpty()) {
+                       storedUsers.forEach {
+                        if (response.body()?.id == it.id) {
+                               database.userDao().update(it)
+                           }
+                       }
+                    } */
+
                     val newLoginUser = User(id = response.body()!!.id)
                     create(newLoginUser)
+                    deleteOldUsers()
                 }
             }
 
         })
     }
+
+
+
 
 
 }
