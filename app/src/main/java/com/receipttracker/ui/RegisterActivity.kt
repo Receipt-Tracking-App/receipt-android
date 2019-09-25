@@ -194,7 +194,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 token = response.body()!!.token
                 Log.i("onRespone", token)
-            }
+            } 
         })
     }
 }
