@@ -8,5 +8,7 @@ interface UserRepoInterface : BaseRepoInterface<User> {
 
     fun getUserData(id: String): LiveData<User>
 
-    fun loginUser(userId: String, password: String)
+    fun loginUser(user: User)
+
+    fun nukeUserTable()
 }
