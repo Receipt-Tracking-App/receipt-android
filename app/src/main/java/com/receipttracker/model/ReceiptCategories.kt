@@ -16,7 +16,7 @@ import androidx.room.PrimaryKey
             childColumns = ["tags_receipt_id"]
         ),
         ForeignKey(
-            entity = ReceiptSubCategories::class,
+            entity = ReceiptCategories::class,
             parentColumns = ["id"],
             childColumns = ["receipt_category_id"]
         )
@@ -50,7 +50,7 @@ class Tags (
     )
 )
 
-class ReceiptSubCategories (
+class ReceiptCategories (
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
     val id: Int? = null,

@@ -1,5 +1,6 @@
 package com.receipttracker.remote
 
+import com.google.gson.annotations.SerializedName
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
 import com.receipttracker.model.User
@@ -29,7 +30,7 @@ interface ReceiptTrackerService {
     fun createUser(@Body request: RequestBody): Call<User>
 
     @POST("/auth/login")
-    fun userLoginPost(@Body request: RequestBody): Call<User>
+    fun userLoginPost(@Body userId: String, password: String): Call<User>
 
     companion object {
 

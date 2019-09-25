@@ -24,8 +24,8 @@ import com.google.gson.annotations.SerializedName
 
 data class User (
 
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
-    var id: Int? = null,
+    @PrimaryKey @ColumnInfo(name = "id")
+    var id: String? = null,
 
     @SerializedName("first_name")
     val firstName: String,
@@ -44,6 +44,6 @@ data class User (
 
     @ColumnInfo(name = "user_group_id")
     @SerializedName("user_group_id")
-    val userGroupId: Int
+    val userGroupId: Int? = null
 )
 
