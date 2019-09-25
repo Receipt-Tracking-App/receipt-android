@@ -1,8 +1,17 @@
 package com.receipttracker.ViewModel
 
+import android.util.Log
 import android.util.Patterns
+import com.receipttracker.model.NewUser
+import com.receipttracker.model.RegisterResponse
+import com.receipttracker.remote.ServiceBuilder
+import com.receipttracker.ui.RegisterActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class RegisterValidation {
+interface RegisterValidation {
+
     companion object {
         const val EMAIL_FORMAT_ERROR_TEXT = "Invalid email format."
         const val BLANK_ERROR_TEXT = "Field can't be empty."
@@ -19,8 +28,10 @@ class RegisterValidation {
     fun validateString(name: String?, minLength: Int, maxLength: Int): ValidationWithMessage {
 
         return when {
+
                 name.isNullOrBlank() -> ValidationWithMessage(BLANK_ERROR_TEXT,false)
-                name.length < minLength -> ValidationWithMessage("Must be at leas 2 characters", false)
+                name.length < minLength -> ValidationWithMessage(characterLengthErrorText(maxLength, minLength, false), false)
+                name.length > maxLength -> ValidationWithMessage(characterLengthErrorText(maxLength,minLength,true), false)
                 else -> ValidationWithMessage(null, true)
             }
     }
@@ -34,9 +45,31 @@ class RegisterValidation {
         }
     }
 
-    fun confirmRegister() {
+    fun confirmRegister(newUser: NewUser) {
 
+        val firstNameValidationReturn = newUser.firstName
+        val lastNameValidationReturn = newUser.lastName
+        val usernameValidationReturn = newUser.username
+        val emailValidationReturn = newUser.email
+        val passwordValidationReturn = newUser.password
+
+    }
+
+    fun createUserForAPI(newUser: NewUser) {
+        val call: Call<RegisterResponse> = ServiceBuilder.create().createUser(newUser)
+
+        call.enqueue(object: Callback<RegisterResponse> {
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                Log.i("OnFailure", t.message)
+            }
+
+            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                RegisterActivity.token = response.body()!!.token
+                Log.i("onRespone", RegisterActivity.token)
+            }
+        })
     }
 
 
 }
+data class ValidationWithMessage(val errorText: String?, val valid: Boolean)

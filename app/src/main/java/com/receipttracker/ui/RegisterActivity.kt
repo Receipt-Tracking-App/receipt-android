@@ -57,71 +57,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    //Checks to see if the entered first name is okay or not.
-    private fun validateFirstName(): Boolean {
-        //Gets the text from the firstName text input layout
-        firstName = text_input_first_name_register.editText?.text.toString().trim()
-
-        if (firstName.isEmpty()) {
-            text_input_first_name_register.error = "Field can't be empty"
-            validatedFirstName = false
-            return false
-        } else if (firstName.length < 2) {
-            text_input_first_name_register.error = "First name must be at least two characters"
-            return false
-        } else {
-            //Removes the error message if it already exists
-            text_input_first_name_register.error = null
-            text_input_first_name_register.isErrorEnabled = false
-            validatedFirstName = true
-            return true
-        }
-    }
-
-    //Checks to see if the entered last name is okay or not.
-    private fun validateLastName(): Boolean {
-        //Gets the text from the lastName text input layout
-        lastName = text_input_last_name_register.editText?.text.toString().trim()
-
-        if (lastName.isEmpty()) {
-            text_input_last_name_register.error = "Field can't be empty"
-            validatedLastName = false
-            return false
-        } else if (lastName.length < 2) {
-            text_input_last_name_register.error = "Last name must be at least two characters"
-            return false
-        } else {
-            //Removes the error message if it already exists
-            text_input_last_name_register.error = null
-            text_input_last_name_register.isErrorEnabled = false
-            validatedLastName = true
-            return true
-        }
-    }
-
-    //Checks to see if the entered email is okay or not.
-    private fun validateEmail(): Boolean {
-        //Gets the text from the email text input layout
-        email = text_input_email_register.editText?.text.toString().trim()
-
-        if (email.isEmpty()) {
-            text_input_email_register.error = "Field can't be empty"
-            validatedEmail = false
-            return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            text_input_email_register.error = "Invalid Email Format"
-            return false
-        } else {
-            //Removes the error message if it already exists
-            text_input_email_register.error = null
-            text_input_email_register.isErrorEnabled = false
-            validatedEmail = true
-            return true
-        }
-    }
-
-
-
     //Checks to see if all the fields are correct or not. If so, return back to the login page.
     private fun confirmRegister() {
         //If any of the entered information isn't entered properly, prevent the user from successfully registering.
@@ -138,18 +73,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun createUserr(){
-        val call:Call<RegisterResponse> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))
 
-        call.enqueue(object: Callback<RegisterResponse>{
-            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                Log.i("OnFailure", t.message)
-            }
-
-            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
-                token = response.body()!!.token
-                Log.i("onRespone", token)
-            }
-        })
     }
 }
 

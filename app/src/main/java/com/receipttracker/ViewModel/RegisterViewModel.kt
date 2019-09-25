@@ -6,7 +6,7 @@ import com.receipttracker.model.User
 
 class RegisterViewModel : BaseViewModel<User>() {
 
-    val registerValidation = RegisterValidation()
+    val registerValidation = RegisterValidation
     val newUser: NewUser? = null
 
     override fun create(obj: User) {
@@ -31,4 +31,3 @@ class RegisterViewModel : BaseViewModel<User>() {
 
 
 
-data class ValidationWithMessage(val errorText: String?, val valid: Boolean)
