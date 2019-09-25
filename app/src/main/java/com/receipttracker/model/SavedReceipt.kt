@@ -72,4 +72,4 @@ class ReceiptMedia(
     @ColumnInfo(name = "description")
     var description: String
 )
-)
+
