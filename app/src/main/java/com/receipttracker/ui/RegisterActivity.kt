@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.receipttracker.R
+import com.receipttracker.ViewModel.RegisterViewModel
 import com.receipttracker.model.NewUser
 import com.receipttracker.model.RegisterResponse
 import com.receipttracker.remote.ReceiptTrackerService
@@ -14,8 +17,11 @@ import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var model: RegisterViewModel
 
     companion object{
         var token = ""
@@ -29,15 +35,13 @@ class RegisterActivity : AppCompatActivity() {
 
     //
     //Making these variables global since they're probably gonna be needed when working with the database
-    lateinit var firstName: String
-    lateinit var lastName: String
-    lateinit var username: String
-    lateinit var email: String
-    lateinit var password: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        model = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
 
         btn_register_create.setOnClickListener {
             validateFirstName()
