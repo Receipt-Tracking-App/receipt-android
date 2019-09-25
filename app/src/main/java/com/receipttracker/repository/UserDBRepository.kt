@@ -52,7 +52,8 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful && response.body() != null) {
-                    create(response.body())
+
+                    //val userId
                 }
             }
 

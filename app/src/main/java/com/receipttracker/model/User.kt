@@ -26,12 +26,15 @@ import java.io.Serializable
 data class User (
 
     @PrimaryKey @ColumnInfo(name = "id") @SerializedName("userId", alternate = ["username"])
-    var id: String = "",
+    var id: Int,
 
-    @SerializedName("first_name")
+    @SerializedName("email")
+    val email: String,
+
+    @SerializedName("firstName")
     val firstName: String,
 
-    @SerializedName("last_name")
+    @SerializedName("lastName")
     val lastName: String,
 
     @SerializedName("password")
@@ -48,3 +51,7 @@ data class User (
     val userGroupId: Int? = null
 ) : Serializable
 
+class NewUser (
+    userId: String,
+    password: String
+)
