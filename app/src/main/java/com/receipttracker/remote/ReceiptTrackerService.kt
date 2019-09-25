@@ -24,7 +24,7 @@ interface ReceiptTrackerService {
     //@POST("/receipts/{id}/upload")
 
     @POST("auth/register")
-    fun createUser(@Body newUser: NewUser): Call<NewUser>
+    fun createUser(@Body newUser: NewUser): Call<RegisterResponse>
 
     @POST("auth/login")
     fun userLoginPost(@Body userLogin: UserLogin) : Call<User>

@@ -17,6 +17,10 @@ import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
+    companion object{
+        var token = ""
+    }
+
     private var validatedFirstName: Boolean = false
     private var validatedLastName: Boolean = false
     private var validatedUsername: Boolean = false
@@ -180,17 +184,17 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun createUserr(){
-        val call:Call<NewUser> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))
+        val call:Call<RegisterResponse> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))
 
-        call.enqueue(object: Callback<NewUser>{
-            override fun onFailure(call: Call<NewUser>, t: Throwable) {
+        call.enqueue(object: Callback<RegisterResponse>{
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 Log.i("OnFailure", t.message)
             }
 
-            override fun onResponse(call: Call<NewUser>, response: Response<NewUser>) {
-                Log.i("onRespone", response.raw().message)
+            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                token = response.body()!!.token
+                Log.i("onRespone", token)
             }
-
         })
     }
 }
