@@ -8,8 +8,8 @@ import java.time.LocalDateTime
 
 
 @Entity(
-    tableName = "receipts",
-    indices = arrayOf(
+    tableName = "receipts"
+  /*  indices = arrayOf(
 
         Index(
             value = ["user_id_for_receipt", "receipt_id"] // indexes these specific values so the db will query faster.
@@ -22,7 +22,7 @@ import java.time.LocalDateTime
             parentColumns = arrayOf("id"), // References id in user class. creates a relation between the id and userID value through use of a foreign key
             childColumns = arrayOf("user_id_for_receipt")
         )
-    )
+    ) */
 )
 class SavedReceipt(
 
@@ -56,9 +56,9 @@ class SavedReceipt(
 )
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(
-    tableName = "receipt_media",
+    tableName = "receipt_media"
 
-    indices = arrayOf(
+   /* indices = arrayOf(
         Index(
             value = ["id", "receipt_id"]
         )
@@ -69,7 +69,7 @@ class SavedReceipt(
             parentColumns = arrayOf("receipt_id"),
             childColumns = arrayOf("receipt_id")
         )
-    )
+    ) */
 )
 class ReceiptMedia(
 

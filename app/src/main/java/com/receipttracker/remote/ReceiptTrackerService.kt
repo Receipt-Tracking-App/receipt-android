@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
 import com.receipttracker.model.User
+import com.receipttracker.model.UserLogin
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -30,7 +31,7 @@ interface ReceiptTrackerService {
     fun createUser(@Body request: RequestBody): Call<User>
 
     @POST("/auth/login")
-    fun userLoginPost(@Body user: User) : Call<User>
+    fun userLoginPost(@Body userLogin: UserLogin) : Call<>
 
     companion object {
 

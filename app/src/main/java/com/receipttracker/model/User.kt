@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 @Entity(
-        tableName = "user",
+        tableName = "user"
 
-        indices = arrayOf(
+       /* indices = arrayOf(
             Index(
                 value = ["id", "user_group_id"],
                 unique = true
@@ -20,38 +20,56 @@ import java.io.Serializable
             parentColumns = arrayOf("group_id"),
             childColumns = arrayOf("user_group_id")
         )
-    )
+    ) */
 )
 
 data class User (
 
-    @PrimaryKey @ColumnInfo(name = "id") @SerializedName("userId", alternate = ["username"])
+    @PrimaryKey @ColumnInfo(name = "id") @SerializedName("userId")
     var id: Int,
 
     @SerializedName("email")
-    val email: String,
+    val email: String?,
 
     @SerializedName("firstName")
-    val firstName: String,
+    val firstName: String?,
 
     @SerializedName("lastName")
-    val lastName: String,
+    val lastName: String?,
 
     @SerializedName("password")
-    val password: String,
+    val password: String?,
 
-    @SerializedName("created_at")
-    val dateUserAccountCreated: Int? = null,
+    //@SerializedName("created_at")
+    //val dateUserAccountCreated: Int? = null,
 
-    @SerializedName("updated_at")
-    val dateUserAccountLastUpdated: Int? = null,
+    //@SerializedName("updated_at")
+    //val dateUserAccountLastUpdated: Int? = null,
 
     @ColumnInfo(name = "user_group_id")
     @SerializedName("user_group_id")
     val userGroupId: Int? = null
 ) : Serializable
 
+class UserLogin (
+
+    @SerializedName("userId")
+    val username: String,
+    @SerializedName("password")
+    val password: String
+
+) : Serializable
+
 class NewUser (
-    userId: String,
-    password: String
-)
+
+    @SerializedName("firstName")
+    val firstName: String,
+    @SerializedName("lastName")
+    val lastName: String,
+    @SerializedName("email")
+    val email: String,
+    @SerializedName("username")
+    val username: String,
+    @SerializedName("password")
+    val password: String
+) : Serializable
