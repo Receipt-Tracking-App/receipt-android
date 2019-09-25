@@ -3,7 +3,7 @@ package com.receipttracker.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.receipttracker.model.SavedReceipt
-import com.receipttracker.model.repo
+import com.receipttracker.model.receiptRepo
 
 class ReceiptViewModel : ViewModel(){
 
@@ -13,19 +13,19 @@ class ReceiptViewModel : ViewModel(){
     }
     fun readAllReceipts() : LiveData<List<SavedReceipt>>{
 
-        return repo.getAllReceipts()
+        return receiptRepo.getAllReceipts()
     }
     fun createReceipt(receipt: SavedReceipt){
-        repo.create(receipt)
+        receiptRepo.create(receipt)
     }
 
 
 
     fun updateReceipt(receipt: SavedReceipt){
-        repo.update(receipt)
+        receiptRepo.update(receipt)
     }
     fun deleteReceipt(receipt: SavedReceipt){
-        repo.delete(receipt)
+        receiptRepo.delete(receipt)
     }
 
 }
