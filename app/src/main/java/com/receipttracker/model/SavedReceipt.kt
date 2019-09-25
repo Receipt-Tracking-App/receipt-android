@@ -1,10 +1,7 @@
 package com.receipttracker.model
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.time.LocalDateTime
@@ -16,6 +13,13 @@ import java.time.LocalDateTime
     val service: String*/
 @Entity(
     tableName = "receipts",
+    indices = arrayOf(
+
+        Index(
+            value = ["user_id_for_receipt", "receipt_id"]
+        )
+
+    ),
     foreignKeys = arrayOf(
         ForeignKey(
             entity = User::class,
@@ -49,6 +53,11 @@ class SavedReceipt(
 @Entity(
     tableName = "receipt_media",
 
+    indices = arrayOf(
+        Index(
+            value = ["id", "receipt_id"]
+        )
+    ),
     foreignKeys = arrayOf (
         ForeignKey(
             entity = SavedReceipt::class,

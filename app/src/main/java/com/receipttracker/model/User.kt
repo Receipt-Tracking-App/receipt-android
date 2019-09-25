@@ -1,13 +1,17 @@
 package com.receipttracker.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 @Entity(
         tableName = "user",
+
+        indices = arrayOf(
+            Index(
+                value = ["id", "user_group_id"],
+                unique = true
+            )
+        ),
 
         foreignKeys = arrayOf(
         ForeignKey(
