@@ -15,6 +15,7 @@ class RegisterActivity : AppCompatActivity() {
     private var validatedEmail: Boolean = false
     private var validatedPassword: Boolean = false
 
+    //
     //Making these variables global since they're probably gonna be needed when working with the database
     lateinit var firstName: String
     lateinit var lastName: String
