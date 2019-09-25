@@ -120,57 +120,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    //Checks to see if the entered username is okay or not.
-    private fun validateUsername(): Boolean {
-        //Gets the text from the username text input layout
-        username = text_input_username_register.editText?.text.toString().trim()
 
-        if (username.isEmpty()) {
-            text_input_username_register.error = "Field can't be empty"
-            validatedUsername = false
-            return false
-        } else if (username.length < 4) {
-            text_input_username_register.error = "Username must be at least four characters"
-            return false
-        }
-
-        //As of the current time of this else if statement, the current max characters is six.
-        //Backend person said that he would change it to 12 in the future.
-        else if (username.length > 12) {
-            text_input_username_register.error = "Username can't be more than 12 characters"
-            return false
-        } else {
-            //Removes the error message if it already exists
-            text_input_username_register.error = null
-            text_input_username_register.isErrorEnabled = false
-            validatedUsername = true
-            return true
-        }
-    }
-
-    //Checks to see if the entered password is okay or not.
-    private fun validatePassword(): Boolean {
-        //Gets the text from the password text input layout
-        password = text_input_password_register.editText?.text.toString().trim()
-
-        if (password.isEmpty()) {
-            text_input_password_register.error = "Field can't be empty"
-            validatedPassword = false
-            return false
-        } else if (password.length < 4) {
-            text_input_password_register.error = "Password must be at least four characters"
-            return false
-        } else if (password.length > 12) {
-            text_input_password_register.error = "Password can't be more than 12 characters"
-            return false
-        } else {
-            //Removes the error message if it already exists
-            text_input_password_register.error = null
-            text_input_password_register.isErrorEnabled = false
-            validatedPassword = true
-            return true
-        }
-    }
 
     //Checks to see if all the fields are correct or not. If so, return back to the login page.
     private fun confirmRegister() {

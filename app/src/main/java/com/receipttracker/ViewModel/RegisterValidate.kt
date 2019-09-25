@@ -1,9 +1,12 @@
 package com.receipttracker.ViewModel
 
+import android.util.Patterns
+
 class RegisterValidation {
     companion object {
-        const val BLANK_ERROR_TEXT = "Field can't be empty"
-        fun characterLengthErrorText(maxLength: Int, minLength: Int, tooLong: Boolean) : String {
+        const val EMAIL_FORMAT_ERROR_TEXT = "Invalid email format."
+        const val BLANK_ERROR_TEXT = "Field can't be empty."
+        fun characterLengthErrorText(maxLength: Int, minLength: Int, tooLong: Boolean = false) : String {
 
             return when(tooLong) {
                 true -> "Must be at less than $maxLength characters"
@@ -11,25 +14,29 @@ class RegisterValidation {
             }
 
         }
-
-
     }
-    fun validateName(name: String?, requiredNameLength: Int): ValidationWithMessage {
+
+    fun validateString(name: String?, minLength: Int, maxLength: Int): ValidationWithMessage {
 
         return when {
-            name != null -> when {
-                name.isNotBlank() -> ValidationWithMessage(BLANK_ERROR_TEXT,false)
-                name.length < requiredNameLength -> ValidationWithMessage("Must be at leas 2 characters", false)
+                name.isNullOrBlank() -> ValidationWithMessage(BLANK_ERROR_TEXT,false)
+                name.length < minLength -> ValidationWithMessage("Must be at leas 2 characters", false)
                 else -> ValidationWithMessage(null, true)
             }
-            else -> ValidationWithMessage("Error", false)
-        }
     }
-    fun validateUsername(username: String?, requiredUsernameLength: Int) : ValidationWithMessage {
+
+    fun validateEmail(email: String?): ValidationWithMessage {
+
         return when {
-            username != null -> when {
-                username.isNotBlank() -> ValidationWithMessage("Field can")
-            }
+            email.isNullOrBlank() -> ValidationWithMessage(BLANK_ERROR_TEXT, false)
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> ValidationWithMessage(EMAIL_FORMAT_ERROR_TEXT, false)
+            else -> ValidationWithMessage(BLANK_ERROR_TEXT, false)
         }
     }
+
+    fun confirmRegister() {
+
+    }
+
+
 }
