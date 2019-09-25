@@ -1,9 +1,11 @@
 package com.receipttracker.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.receipttracker.local.AppDB
 import com.receipttracker.model.User
+import com.receipttracker.model.UserLogin
 import com.receipttracker.remote.ReceiptTrackerService
 import com.receipttracker.repository.common.BaseRepoInterface
 import retrofit2.Call
@@ -43,18 +45,19 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
     }
 
     // Retrofit
-    override fun loginUser(user: User) {
+    override fun loginUser(user: UserLogin) {
 
         apiFactory.userLoginPost(user).enqueue(object: Callback<User> {
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.i("API Error Message", "User Login Error")
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful && response.body() != null) {
 
-                    //val userId
+                    val newLoginUser = User(id = response.body()!!.id)
+                    create(newLoginUser)
                 }
             }
 

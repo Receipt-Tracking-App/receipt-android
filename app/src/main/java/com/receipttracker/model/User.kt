@@ -29,16 +29,16 @@ data class User (
     var id: Int,
 
     @SerializedName("email")
-    val email: String?,
+    val email: String? = null,
 
     @SerializedName("firstName")
-    val firstName: String?,
+    val firstName: String? = null,
 
     @SerializedName("lastName")
-    val lastName: String?,
+    val lastName: String? = null,
 
     @SerializedName("password")
-    val password: String?,
+    val password: String? = null,
 
     //@SerializedName("created_at")
     //val dateUserAccountCreated: Int? = null,

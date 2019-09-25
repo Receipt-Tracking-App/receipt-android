@@ -3,19 +3,27 @@ package com.receipttracker.model
 import android.app.Application
 import com.receipttracker.repository.ReceiptRepoInterface
 import com.receipttracker.repository.SavedReceiptsDBERepository
+import com.receipttracker.repository.UserDBRepository
+import com.receipttracker.repository.UserRepoInterface
 
-val repo: ReceiptRepoInterface by lazy{
-    App.repo!!
+val receiptRepo: ReceiptRepoInterface by lazy{
+    App.receiptRepo!!
+}
+
+val userRepo: UserRepoInterface by lazy {
+    App.userRepo!!
 }
 
 class App : Application(){
     companion object{
-        var repo: ReceiptRepoInterface? = null
+        var receiptRepo: ReceiptRepoInterface? = null
+        var userRepo: UserRepoInterface? = null
 
     }
 
     override fun onCreate() {
         super.onCreate()
-        repo = SavedReceiptsDBERepository(applicationContext)
+        receiptRepo = SavedReceiptsDBERepository(applicationContext)
+        userRepo = UserDBRepository(applicationContext)
     }
 }
