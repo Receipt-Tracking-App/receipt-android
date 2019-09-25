@@ -16,16 +16,16 @@ class ReceiptViewModel : ViewModel(){
         return repo.getAllReceipts()
     }
     fun createReceipt(receipt: SavedReceipt){
-        repo.createReceipt((receipt))
+        repo.create(receipt)
     }
 
 
 
     fun updateReceipt(receipt: SavedReceipt){
-        repo.updateReceipt(receipt)
+        repo.update(receipt)
     }
     fun deleteReceipt(receipt: SavedReceipt){
-        repo.deleteReceipt(receipt)
+        repo.delete(receipt)
     }
 
 }
