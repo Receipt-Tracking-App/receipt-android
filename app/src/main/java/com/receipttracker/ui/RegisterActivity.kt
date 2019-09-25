@@ -2,10 +2,18 @@ package com.receipttracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import com.receipttracker.R
+import com.receipttracker.model.NewUser
+import com.receipttracker.model.RegisterResponse
+import com.receipttracker.remote.ReceiptTrackerService
+import com.receipttracker.remote.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_register.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -167,8 +175,23 @@ class RegisterActivity : AppCompatActivity() {
             "New User successfully created\nWelcome $firstName",
             Toast.LENGTH_SHORT
         ).show()
-
+        createUserr()
         finish()
+    }
+
+    private fun createUserr(){
+        val call:Call<NewUser> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))
+
+        call.enqueue(object: Callback<NewUser>{
+            override fun onFailure(call: Call<NewUser>, t: Throwable) {
+                Log.i("OnFailure", t.message)
+            }
+
+            override fun onResponse(call: Call<NewUser>, response: Response<NewUser>) {
+                Log.i("onRespone", response.raw().message)
+            }
+
+        })
     }
 }
 
