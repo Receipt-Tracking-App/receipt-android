@@ -1,12 +1,14 @@
 package com.receipttracker.model
 
+import androidx.annotation.Size
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import kotlin.math.min
+
 
 @Entity(
         tableName = "user"
-
        /* indices = arrayOf(
             Index(
                 value = ["id", "user_group_id"],
@@ -22,11 +24,13 @@ import java.io.Serializable
         )
     ) */
 )
-
 data class User (
 
-    @PrimaryKey @ColumnInfo(name = "id") @SerializedName("userId")
+    @ColumnInfo(name = "id") @SerializedName("userId")
     var id: Int,
+
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "user_roomId")
+    var userRoomId: Int? = null,
 
     @SerializedName("email")
     val email: String? = null,
