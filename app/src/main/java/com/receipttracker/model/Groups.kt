@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 @Entity(
     tableName = "user_groups",
     indices = arrayOf(
-        Index(value = ["group_iad"], unique = true)
+        Index(value = ["group_id"], unique = true)
     )
 )
 data class Groups (
