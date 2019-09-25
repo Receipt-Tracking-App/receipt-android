@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 @Entity(
-        tableName = "user",
+        tableName = "user"
 
-        indices = arrayOf(
+       /* indices = arrayOf(
             Index(
                 value = ["id", "user_group_id"],
                 unique = true
@@ -20,7 +20,7 @@ import java.io.Serializable
             parentColumns = arrayOf("group_id"),
             childColumns = arrayOf("user_group_id")
         )
-    )
+    ) */
 )
 
 data class User (

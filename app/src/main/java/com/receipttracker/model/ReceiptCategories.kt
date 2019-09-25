@@ -6,9 +6,9 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "tags",
+    tableName = "tags"
 
-    foreignKeys = arrayOf(
+    /* foreignKeys = arrayOf(
 
         ForeignKey(
             entity = SavedReceipt::class,
@@ -20,7 +20,7 @@ import androidx.room.PrimaryKey
             parentColumns = ["id"],
             childColumns = ["receipt_category_id"]
         )
-    )
+    ) */
 )
 class Tags (
 
@@ -39,15 +39,15 @@ class Tags (
 )
 
 @Entity(
-    tableName = "receipt_categories",
+    tableName = "receipt_categories"
 
-    foreignKeys = arrayOf(
+    /*    foreignKeys = arrayOf(
         ForeignKey(
             entity = ReceiptMainCategories::class,
             parentColumns = ["id"],
             childColumns = ["receipt_main_categories_id"]
         )
-    )
+    ) */
 )
 
 class ReceiptCategories (
