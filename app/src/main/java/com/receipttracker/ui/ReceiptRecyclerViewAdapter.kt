@@ -56,7 +56,7 @@ class ReceiptRecyclerViewAdapter(private var savedReceiptList: List<SavedReceipt
 
         holder.notesTextView.text = savedReceiptList[position].notes
         holder.priceTextView.text = savedReceiptList[position].amount.toString()
-        holder.dateTextView.text = savedReceiptList[position].receiptCreatedAt.toString()
+        //holder.dateTextView.text = savedReceiptList[position].receiptCreatedAt.toString()
         //holder.locationTextView.text = savedReceiptList[position].
         holder.businessNameTextView.text = savedReceiptList[position].merchant
         holder.expandAndCollapseBttn.setOnClickListener {
