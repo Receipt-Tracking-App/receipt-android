@@ -35,7 +35,7 @@ interface ReceiptTrackerService {
 
     companion object {
 
-        const val BASE_URL = "https://lambda-receipt-tracker.herokuapp.com/api"
+        const val BASE_URL = "https://lambda-receipt-tracker.herokuapp.com/api/"
 
         private val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
