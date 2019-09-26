@@ -27,4 +27,5 @@ abstract class UserDao : BaseDao<User> {
 
     @Query("DELETE FROM user where user_roomId NOT IN (SELECT user_roomId from user ORDER BY user_roomId DESC LIMIT 3)")
     abstract fun deleteOldUsers()
+
 }

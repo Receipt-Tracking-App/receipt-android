@@ -5,7 +5,7 @@
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="8dp"
-
+    android:elevation="8dp"
     style="@style/Widget.MaterialComponents.CardView"
     app:cardCornerRadius="6dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -149,16 +149,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/recyclerItemReceipt_locationTV"
-            android:layout_width="381dp"
-            android:layout_height="137dp"
-            android:src="@drawable/ic_launcher_background"
-            android:textSize="16sp"
-
-            app:layout_constraintBottom_toBottomOf="@id/recyclerItemReceipt_locationIcon"
-            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_locationIcon"
-            app:layout_constraintTop_toTopOf="@id/recyclerItemReceipt_locationIcon" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
