@@ -26,8 +26,10 @@ import java.time.LocalDateTime
 )
 class SavedReceipt(
 
-    @PrimaryKey(autoGenerate = true)  @ColumnInfo(name = "receipt_id") @NonNull
+    @PrimaryKey(autoGenerate = true)  @ColumnInfo(name = "id") @NonNull
     var receiptId: Int? = null,
+
+    val userId: Int,
 
     val purchaseDate: Int,
 
@@ -37,8 +39,14 @@ class SavedReceipt(
 
     val notes: String,
 
-    @ColumnInfo(name = "user_id_for_receipt")
-    val userId : Int
+    val createdAt: LocalDateTime,
+
+    val updatedAt: LocalDateTime,
+
+    //Todo: Update the ReceiptMedia class because the api is silly. Make the media param ReceiptMedia Type
+    val media: String,
+    //Todo: Update the ReceiptCategories class because the api is silly. Make the categories param ReceiptCategories Type.
+    val categories: String
 )
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(
