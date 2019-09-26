@@ -10,7 +10,6 @@ import com.receipttracker.model.userRepo
 class AuthenticationViewModel: BaseViewModel<User>() {
 
     var user: LiveData<User>? = null
-
     fun getUser(userId: Int) {
         val loggedInUser = userRepo.getUserData(userId)
         user = loggedInUser
