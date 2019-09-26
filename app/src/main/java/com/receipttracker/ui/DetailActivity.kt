@@ -45,7 +45,7 @@ class DetailActivity : AppCompatActivity() {
         override fun doInBackground(vararg p0: SavedReceipt?) {
             if (p0.isNotEmpty()){
                 p0[0]?.let {
-                   // viewModel.get()?.deleteReceipt(it)
+                    //viewModel.get()?.deleteReceipt(it)
                 }
             }
         }
@@ -69,8 +69,8 @@ class DetailActivity : AppCompatActivity() {
 
             receipt_list.removeAllViews()
 
-        savedReceipt.forEach {savedReceipt ->
-            receipt_list.addView(createTextView(savedReceipt))
+        savedReceipt.forEach {
+            receipt_list.addView(createTextView(it))
         }
 
 

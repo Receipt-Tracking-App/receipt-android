@@ -1,26 +1,42 @@
 package com.receipttracker.ui
 
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
+import com.receipttracker.local.SavedReceiptDao
+import com.receipttracker.local.SavedReceiptDao_Impl
+import com.receipttracker.model.ReceiptCategories
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
+
+import com.receipttracker.model.receiptRepo
+import com.receipttracker.repository.SavedReceiptsDBERepository
+
+import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Body
 import java.lang.ref.WeakReference
 
-class ListActivity : AppCompatActivity(), Callback<ReceiptOverview> {
-    override fun onFailure(call: Call<ReceiptOverview>, t: Throwable) {
+class ListActivity : AppCompatActivity(), Callback<SavedReceipt> {
+    override fun onFailure(call: Call<SavedReceipt>, t: Throwable) {
 
     }
 
-    override fun onResponse(call: Call<ReceiptOverview>, response: Response<ReceiptOverview>) {
+    override fun onResponse(call: Call<SavedReceipt>, response: Response<SavedReceipt>) {
     }
 
     lateinit var viewModel: ReceiptViewModel
+
+    val apiBuilder = SavedReceiptsDBERepository(this).apiFactory()
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +44,32 @@ class ListActivity : AppCompatActivity(), Callback<ReceiptOverview> {
         setContentView(R.layout.activity_list)
 
 
+       // apiBuilder.getUserReceiptsByID(1)
+        var itemList = listOf<SavedReceipt>(SavedReceipt(0,
+            11,"MCDS", 1.69f, "ghuighsdk",0), SavedReceipt(0, 11/11/1986, "SHOPPING MALL", 200.00f, "horrible experience", 1)
+        )
+        recycle.apply {
+            layoutManager =  LinearLayoutManager(this@ListActivity)
+            adapter = ReceiptRecyclerViewAdapter(itemList)
+        }
+
+        listActivity_bottomAppBar_fab.setOnClickListener {
+            startActivity(Intent(this, AddReceiptActivity::class.java))
+        }
+    
+
     }
+
+
+ //  private fun getReceiptByBusiness(receiptName: String) {
+ //      viewModel.receipts
+
+
+
 
     private fun getReceiptByBusiness(receiptName: String) {
         viewModel.receipts
+
 
     }
 
@@ -47,4 +85,13 @@ class ListActivity : AppCompatActivity(), Callback<ReceiptOverview> {
 
         }
     }
+    companion object {
+
+        const val NEW_ENTRY_REQUEST = 2
+
+        const val EDIT_ENTRY_REQUEST = 1
+
+    }
+
+
 }

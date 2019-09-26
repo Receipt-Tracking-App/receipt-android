@@ -2,41 +2,26 @@ package com.receipttracker.ViewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.receipttracker.ViewModel.common.BaseViewModel
 import com.receipttracker.model.User
 import com.receipttracker.model.UserLogin
 import com.receipttracker.model.userRepo
 import okhttp3.internal.userAgent
 
-class LoginViewModel : BaseViewModel<User>() {
+class LoginViewModel : ViewModel(){
 
-    var user: LiveData<User>? = null
-
-    fun getUser(userId: Int) {
-        val loggedInUser = userRepo.getUserData(userId)
-        user = loggedInUser
+    fun createUser(user: User){
+        userRepo.create(user)
+    }
+    fun loginUser(user: UserLogin){
+        userRepo.loginUser(user)
     }
 
-    override fun create(obj: User) {
-        userRepo.create(obj)
-    }
 
-    override fun update(obj: User) {
-        userRepo.update(obj)
-    }
 
-    override fun delete(obj: User) {
-        userRepo.delete(obj)
+    fun updateUpdateUser(user: User){
+        userRepo.create(user)
     }
-
-    // Login and Sign Out
-    fun loginUser(userLogin: UserLogin) {
-        userRepo.loginUser(userLogin)
-    }
-
-    fun nukeUserTableOnSignOut() {
+    fun deleteUser(user: User){
         userRepo.nukeUserTable()
-        user = null
     }
-
 }
