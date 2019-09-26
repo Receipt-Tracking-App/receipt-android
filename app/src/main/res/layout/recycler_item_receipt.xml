@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="8dp"
@@ -81,16 +82,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"/>
 
-        <TextView android:id="@+id/recyclerItemReceipt_locationTV"
 
-            android:layout_marginStart="4dp"
-            android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="@id/recyclerItemReceipt_locationIcon"
-            app:layout_constraintBottom_toBottomOf="@id/recyclerItemReceipt_locationIcon"
-            android:text="1645 S. Pecan Lane"
-            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_locationIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
         <ImageView android:id="@+id/recyclerItemReceipt_businessIcon"
 
@@ -155,6 +147,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/recyclerItemReceipt_locationTV"
+            android:layout_width="381dp"
+            android:layout_height="137dp"
+            android:src="@drawable/ic_launcher_background"
+            android:textSize="16sp"
+
+            app:layout_constraintBottom_toBottomOf="@id/recyclerItemReceipt_locationIcon"
+            app:layout_constraintLeft_toRightOf="@id/recyclerItemReceipt_locationIcon"
+            app:layout_constraintTop_toTopOf="@id/recyclerItemReceipt_locationIcon" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
