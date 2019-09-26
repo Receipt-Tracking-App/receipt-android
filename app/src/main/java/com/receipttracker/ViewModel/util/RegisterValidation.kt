@@ -10,9 +10,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-interface RegisterValidation {
+class RegisterValidation {
 
     companion object {
+        const val PASSWORD_MIN_LENGTH = 4
+        const val PASSWORD_MAX_LENGTH = 8
+        const val NAME_AND_USERNAME_MIN_LENGTH = 2
+        const val NAME_AND_USERNAME_MAX_LENTH = 8
         const val EMAIL_FORMAT_ERROR_TEXT = "Invalid email format."
         const val BLANK_ERROR_TEXT = "Field can't be empty."
         fun characterLengthErrorText(maxLength: Int, minLength: Int, tooLong: Boolean = false) : String {
@@ -25,7 +29,7 @@ interface RegisterValidation {
         }
     }
 
-    fun validateString(name: String?, minLength: Int, maxLength: Int): ValidationWithMessage {
+    fun validate(name: String?, minLength: Int, maxLength: Int): ValidationWithMessage {
 
         return when {
 
@@ -53,7 +57,7 @@ interface RegisterValidation {
             }
     }
 
-    fun validateEmail(email: String?): ValidationWithMessage {
+    fun validate(email: String?): ValidationWithMessage {
 
         return when {
             email.isNullOrBlank() -> ValidationWithMessage(
@@ -74,11 +78,11 @@ interface RegisterValidation {
     fun confirmRegister(newUser: NewUser) {
 
 
-        val firstNameValidationReturn = validateString(newUser.firstName, 2, 8)
-        val lastNameValidationReturn = validateString(newUser.lastName, 2, 8)
-        val usernameValidationReturn = validateString(newUser.username, 2, 8)
-        val emailValidationReturn = validateEmail(newUser.email)
-        val passwordValidationReturn = validateString(newUser.password, 4, 12)
+        val firstNameValidationReturn = validate(newUser.firstName, NAME_AND_USERNAME_MIN_LENGTH, NAME_AND_USERNAME_MAX_LENTH)
+        val lastNameValidationReturn = validate(newUser.lastName, NAME_AND_USERNAME_MIN_LENGTH, NAME_AND_USERNAME_MAX_LENTH)
+        val usernameValidationReturn = validate(newUser.username, NAME_AND_USERNAME_MIN_LENGTH, NAME_AND_USERNAME_MAX_LENTH)
+        val emailValidationReturn = validate(newUser.email)
+        val passwordValidationReturn = validate(newUser.password, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH)
 
         val validations = listOf(
             firstNameValidationReturn,
@@ -87,10 +91,11 @@ interface RegisterValidation {
             emailValidationReturn,
             passwordValidationReturn
         )
+        var errorMessages: List<String>
 
         if(validations.all { it.isValid()}) {
             createUserForAPI(newUser)
-        } else return
+        }
     }
 
     fun createUserForAPI(newUser: NewUser) {
@@ -113,5 +118,8 @@ interface RegisterValidation {
 data class ValidationWithMessage(val errorText: String?, val valid: Boolean) {
     fun isValid() : Boolean {
         return valid
+    }
+    fun getValidationErrorText() : String {
+        return errorText.toString()
     }
 }

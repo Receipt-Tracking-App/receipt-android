@@ -67,13 +67,13 @@ class UserLogin (
 class NewUser (
 
     @SerializedName("firstName")
-    val firstName: String?,
+    var firstName: String?,
     @SerializedName("lastName")
-    val lastName: String?,
+    var lastName: String?,
     @SerializedName("email")
-    val email: String?,
+    var email: String?,
     @SerializedName("username")
-    val username: String?,
+    var username: String?,
     @SerializedName("password")
-    val password: String?
+    var password: String?
 ) : Serializable
