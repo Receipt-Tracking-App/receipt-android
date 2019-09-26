@@ -16,7 +16,9 @@ interface ReceiptTrackerService {
     fun getUserReceiptsByID(@Path ("id") receiptId: Int) : List<SavedReceipt>
 
     @POST("receipts")
-    fun createNewReceipt(@Body request: RequestBody): Call<SavedReceipt>
+    fun createNewReceipt(@Header("Authorization") authToken: String, @Body request: Receipt):Call<ReceiptResponse>
+    //fun createNewReceipt(@Body request: Receipt): Call<ReceiptResponse>
+
 
     @PUT("receipts/{id}")
     fun updateReceipt(@Body request: RequestBody): Call<SavedReceipt>
