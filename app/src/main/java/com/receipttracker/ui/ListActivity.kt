@@ -52,6 +52,10 @@ class ListActivity : AppCompatActivity(), Callback<SavedReceipt> {
             layoutManager =  LinearLayoutManager(this@ListActivity)
             adapter = ReceiptRecyclerViewAdapter(itemList)
         }
+
+        listActivity_bottomAppBar_fab.setOnClickListener {
+            startActivity(Intent(this, AddReceiptActivity::class.java))
+        }
     
 
     }
@@ -60,10 +64,8 @@ class ListActivity : AppCompatActivity(), Callback<SavedReceipt> {
  //  private fun getReceiptByBusiness(receiptName: String) {
  //      viewModel.receipts
 
-        listActivity_bottomAppBar_fab.setOnClickListener {
-            startActivity(Intent(this, AddReceiptActivity::class.java))
-        }
-    }
+
+
 
     private fun getReceiptByBusiness(receiptName: String) {
         viewModel.receipts
