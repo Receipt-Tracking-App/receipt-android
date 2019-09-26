@@ -1,5 +1,6 @@
 package com.receipttracker.ui
 
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,15 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+
+    button_add_receipts.setOnClickListener {
+        val intent = Intent(this, ListActivity::class.java)
+        startActivity(intent)
+    }
+
+
+
+
         viewModel = ViewModelProviders.of(this).get(ReceiptViewModel::class.java)
         ReadAllAsyncTask(this).execute()
 
@@ -39,6 +49,9 @@ class DetailActivity : AppCompatActivity() {
 
 
     }
+
+
+
 
     class DeleteAsyncTask(viewModel: ReceiptViewModel): AsyncTask<SavedReceipt, Void, Unit>(){
         private val viewModel = WeakReference(viewModel)
