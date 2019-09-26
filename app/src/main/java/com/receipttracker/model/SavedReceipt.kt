@@ -39,7 +39,6 @@ class SavedReceipt(
 
     @ColumnInfo(name = "user_id_for_receipt")
     val userId : Int
-
 )
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(

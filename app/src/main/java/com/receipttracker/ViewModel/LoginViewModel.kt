@@ -39,6 +39,4 @@ class LoginViewModel : BaseViewModel<User>() {
         user = null
     }
 
-
-
 }

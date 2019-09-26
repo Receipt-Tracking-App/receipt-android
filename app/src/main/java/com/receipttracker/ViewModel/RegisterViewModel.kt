@@ -1,6 +1,7 @@
 package com.receipttracker.ViewModel
 
 import com.receipttracker.ViewModel.common.BaseViewModel
+import com.receipttracker.ViewModel.util.RegisterValidation
 import com.receipttracker.model.NewUser
 import com.receipttracker.model.User
 
