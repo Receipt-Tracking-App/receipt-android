@@ -75,6 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                     username = userNameText
                     password = passwordText
                     email = emailText
+                     Toast.makeText(this@RegisterActivity, "New User successfully created\nWelcome ${model.newUser.value?.firstName}", Toast.LENGTH_SHORT).show()
                 }
                 model.createNewUser()
             } else {
@@ -84,11 +85,7 @@ class RegisterActivity : AppCompatActivity() {
                 text_input_email_register.error = emailValidation.errorText
                 text_input_password_register.error = passwordValidation.errorText
             }
-           /* Toast.makeText(
-                this,
-                "New User successfully created\nWelcome ${model.newUser.value?.lastName}",
-                Toast.LENGTH_SHORT
-            ).show() */
+
         }
 
         btn_cancel_registration.setOnClickListener {

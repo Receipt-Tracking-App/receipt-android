@@ -40,7 +40,7 @@ class ListActivity : AppCompatActivity(), Callback<ReceiptOverview> {
         override fun doInBackground(vararg p0: SavedReceipt?) {
             if (p0.isNotEmpty()) {
                 p0[0]?.let {
-                    viewModel.get()?.createReceipt(it)
+                    //viewModel.get()?.createReceipt(it)
                 }
 
             }
