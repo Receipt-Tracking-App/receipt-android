@@ -40,7 +40,7 @@
             android:layout_margin="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:hint="Purchase Date:"
+                android:hint="Purchase Date:*"
                 android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -63,7 +63,7 @@
                 android:layout_margin="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:hint="Merchant:"
+                    android:hint="Merchant:*"
                     android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -79,8 +79,8 @@
                 android:layout_margin="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:hint="Cost:"
-                    android:inputType="text"
+                    android:hint="Cost:*"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -101,7 +101,12 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/btn_add_receipt_confirm"
+                android:text="Add Receipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
