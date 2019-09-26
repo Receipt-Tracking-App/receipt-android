@@ -1,5 +1,6 @@
 package com.receipttracker.ui
 
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
+import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +29,9 @@ class ListActivity : AppCompatActivity(), Callback<ReceiptOverview> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-
+        listActivity_bottomAppBar_fab.setOnClickListener {
+            startActivity(Intent(this, AddReceiptActivity::class.java))
+        }
     }
 
     private fun getReceiptByBusiness(receiptName: String) {

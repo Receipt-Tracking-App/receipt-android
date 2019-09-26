@@ -47,6 +47,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+            <Button
+                android:id="@+id/btn_date"
+                android:text="Pick Date By Calendar"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_merchant_add"
                 android:layout_width="match_parent"

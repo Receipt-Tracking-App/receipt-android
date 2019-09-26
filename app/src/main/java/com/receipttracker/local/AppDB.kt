@@ -8,7 +8,7 @@ import com.receipttracker.model.*
 
 @Database(entities = arrayOf(User::class, SavedReceipt::class, Groups::class, ReceiptMedia::class,Tags::class,ReceiptCategories::class, ReceiptMainCategories::class), version = 2, exportSchema = false)
 abstract class AppDB : RoomDatabase(){
- 
+
     abstract fun savedReceiptsDao() : SavedReceiptDao
 
     abstract fun userDao() : UserDao
