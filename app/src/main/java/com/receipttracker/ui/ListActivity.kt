@@ -42,14 +42,16 @@ class ListActivity : AppCompatActivity(), Callback<SavedReceipt> {
 
        // apiBuilder.getUserReceiptsByID(1)
         var itemList = listOf<SavedReceipt>(SavedReceipt(0,
-            11,"MCDS", 1.69f, "ghuighsdk",0), SavedReceipt(0, 11/11/1986, "SHOPPING MALL", 200.00f, "horrible experience", 1))
+            11,"MCDS", 1.69f, "ghuighsdk",0), SavedReceipt(0, 11/11/1986, "SHOPPING MALL", 200.00f, "horrible experience", 1)
+        )
         recycle.apply {
             layoutManager =  LinearLayoutManager(this@ListActivity)
             adapter = ReceiptRecyclerViewAdapter(itemList)
         }
-
+    
 
     }
+
 
  //  private fun getReceiptByBusiness(receiptName: String) {
  //      viewModel.receipts
@@ -68,4 +70,13 @@ class ListActivity : AppCompatActivity(), Callback<SavedReceipt> {
 
         }
     }
+    companion object {
+
+        const val NEW_ENTRY_REQUEST = 2
+
+        const val EDIT_ENTRY_REQUEST = 1
+
+    }
+
+
 }
