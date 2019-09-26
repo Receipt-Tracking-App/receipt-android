@@ -82,8 +82,8 @@ class DetailActivity : AppCompatActivity() {
 
             receipt_list.removeAllViews()
 
-        savedReceipt.forEach {savedReceipt ->
-            receipt_list.addView(createTextView(savedReceipt))
+        savedReceipt.forEach {
+            receipt_list.addView(createTextView(it))
         }
 
 
