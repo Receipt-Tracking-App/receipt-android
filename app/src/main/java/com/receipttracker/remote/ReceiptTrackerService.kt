@@ -13,7 +13,7 @@ import retrofit2.http.*
 interface ReceiptTrackerService {
 
     @GET("receipts/users/{id}")
-    fun getUserReceiptsByID(@Header("Authorization") authToken: String, @Path ("id") userId: Int) : Call<SavedReceipt>
+    fun getUserReceiptsByID(@Header("Authorization") authToken: String, @Path ("id") userId: Int) : Call<ListReceipts>
 
     @POST("receipts")
     fun createNewReceipt(@Header("Authorization") authToken: String, @Body request: Receipt):Call<ReceiptResponse>

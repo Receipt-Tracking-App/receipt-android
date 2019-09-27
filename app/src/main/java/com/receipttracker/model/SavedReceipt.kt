@@ -2,9 +2,11 @@ package com.receipttracker.model
 
 import androidx.annotation.NonNull
 import androidx.room.*
+import com.google.gson.annotations.SerializedName
 import org.json.JSONException
 import org.json.JSONObject
 import java.time.LocalDateTime
+import retrofit2.Call
 
 
 @Entity(
@@ -26,10 +28,11 @@ import java.time.LocalDateTime
 )
 class SavedReceipt(
 
-    @PrimaryKey(autoGenerate = true)  @ColumnInfo(name = "receipt_id") @NonNull
+    @PrimaryKey(autoGenerate = true)//  @ColumnInfo(name = "receipt_id") @NonNull
+    @SerializedName("id")
     var receiptId: Int? = null,
 
-    val purchaseDate: Int,
+    val purchaseDate: String,
 
     val merchant: String,
 
@@ -37,10 +40,15 @@ class SavedReceipt(
 
     val notes: String,
 
-    @ColumnInfo(name = "user_id_for_receipt")
-    val userId : Int
+    val createdAt: String,
 
+    val updatedAt: String,
+
+    //@ColumnInfo(name = "user_id_for_receipt")
+    @SerializedName("user_id")
+    val userId : Int
 )
+
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(
     tableName = "receipt_media"

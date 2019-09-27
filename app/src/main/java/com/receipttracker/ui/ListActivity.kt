@@ -7,21 +7,22 @@ import android.os.Bundle
 import android.util.Log
 import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
-import com.receipttracker.model.Receipt
-import com.receipttracker.model.ReceiptOverview
-import com.receipttracker.model.ReceiptResponse
-import com.receipttracker.model.SavedReceipt
+import com.receipttracker.model.*
 import com.receipttracker.remote.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.StringBuilder
 import java.lang.ref.WeakReference
 
 class ListActivity : AppCompatActivity() {
 
-    lateinit var viewModel: ReceiptViewModel
+    companion object{
+        val receiptList = mutableListOf<SavedReceipt>()
+    }
 
+    lateinit var viewModel: ReceiptViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +33,30 @@ class ListActivity : AppCompatActivity() {
         }
 
         //TODO REPLACE TOKEN AND USERID WHEN LOGIN IS COMPLETE
-        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1MTk0NjAsImV4cCI6MTU2OTU0MTA2MCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.aWVyRUv47RYbK47vzmEhrAzEWd4YV2r4Do2CtT0tm4w"
-        val call:Call<SavedReceipt> = ServiceBuilder.create().getUserReceiptsByID(token, 21)
+        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1NDM1MzAsImV4cCI6MTU2OTU2NTEzMCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.cmc-FkZ-PU3MLr2P5HK4C76_EieHv0mOm24ZP8lJKbw"
+        val call:Call<ListReceipts> = ServiceBuilder.create().getUserReceiptsByID(token, 21)
 
-        call.enqueue(object: Callback<SavedReceipt>{
-            override fun onFailure(call: Call<SavedReceipt>, t: Throwable) {
+        call.enqueue(object: Callback<ListReceipts>{
+            override fun onFailure(call: Call<ListReceipts>, t: Throwable) {
                 Log.i("onFailure", t?.message)
             }
 
             override fun onResponse(
-                call: Call<SavedReceipt>,
-                response: Response<SavedReceipt>
+                call: Call<ListReceipts>,
+                response: Response<ListReceipts>
             ) {
-                Log.i("onResponse", "PLEASE CONNECT")
+                val currentReceipt = response.body()?.receipts?.receipts
+
+                currentReceipt?.forEach {
+                    receiptList.add(SavedReceipt(it.id, it.purchase_date, it.merchant, it.amount.toFloat(), it.notes, it.created_at, it.updated_at, it.user_id))
+                }
+
+                var total:String = ""
+                receiptList.forEach {
+                    total +=it.merchant
+                }
+
+                Log.i("onResponse", total)
             }
 
         })

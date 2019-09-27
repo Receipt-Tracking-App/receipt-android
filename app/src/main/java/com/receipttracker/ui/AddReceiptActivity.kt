@@ -111,7 +111,7 @@ class AddReceiptActivity : AppCompatActivity() {
                 call: Call<ReceiptResponse>,
                 response: Response<ReceiptResponse>
             ) {
-                val message = response.body()!!.error.toString()
+                val message = response.body()!!.message
                 Log.i("onResponse", message)
             }
 
