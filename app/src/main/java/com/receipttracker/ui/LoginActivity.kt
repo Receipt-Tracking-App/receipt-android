@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     companion object{
         var token:String = ""
+        var userId:Int = 0
     }
 
     private var validatedUsername: Boolean = false
@@ -43,12 +44,6 @@ class LoginActivity : AppCompatActivity() {
         //Move to the register activity when the register button is clicked on
         btn_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
-        //Allows us to move to the ListActivity without a legit account
-        //TODO Remove this on official release
-        btn_dev_skip.setOnClickListener {
-            startActivity(Intent(this, ListActivity::class.java))
         }
     }
 
@@ -122,7 +117,9 @@ class LoginActivity : AppCompatActivity() {
 
                 if(error == false){
                     token = "Bearer ${response.body()!!.token}"
+                    userId = response.body()!!.userId
                     Log.i("onResponse", token)
+                    Log.i("onResponse", userId.toString())
                     text_input_username.error = null
                     text_input_password.error = null
                     startActivity(Intent(this@LoginActivity, ListActivity::class.java))

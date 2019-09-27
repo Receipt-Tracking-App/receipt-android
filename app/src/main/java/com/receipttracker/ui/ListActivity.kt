@@ -32,9 +32,8 @@ class ListActivity : AppCompatActivity() {
             startActivity(Intent(this, AddReceiptActivity::class.java))
         }
 
-        //TODO REPLACE TOKEN AND USERID WHEN LOGIN IS COMPLETE
         Log.i("onResponse", LoginActivity.token)
-        val call:Call<ListReceipts> = ServiceBuilder.create().getUserReceiptsByID(LoginActivity.token, 21)
+        val call:Call<ListReceipts> = ServiceBuilder.create().getUserReceiptsByID(LoginActivity.token, LoginActivity.userId)
 
         call.enqueue(object: Callback<ListReceipts>{
             override fun onFailure(call: Call<ListReceipts>, t: Throwable) {
