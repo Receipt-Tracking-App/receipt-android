@@ -56,7 +56,7 @@ class AddReceiptActivity : AppCompatActivity() {
             return true
         }
     }
-
+ 
     private fun validateMerchant(): Boolean{
         if(text_merchant_add.editText?.text.isNullOrBlank()) {
             text_merchant_add.error = "Seller cannot be empty"
