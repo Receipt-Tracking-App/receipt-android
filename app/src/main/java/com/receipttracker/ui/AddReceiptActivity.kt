@@ -103,7 +103,6 @@ class AddReceiptActivity : AppCompatActivity() {
         val call: Call<ReceiptResponse> = ServiceBuilder.create().createNewReceipt(token,
             Receipt(date, merchant, cost, description))
 
-        Log.i("onAfter", "Test")
 
         call.enqueue(object: Callback<ReceiptResponse>{
             override fun onFailure(call: Call<ReceiptResponse>, t: Throwable) {
@@ -114,7 +113,8 @@ class AddReceiptActivity : AppCompatActivity() {
                 call: Call<ReceiptResponse>,
                 response: Response<ReceiptResponse>
             ) {
-                Log.i("onResponse", "PLEASE CONNECT")
+                val message = response.body()!!.message
+                Log.i("onResponse", message)
             }
 
         })
