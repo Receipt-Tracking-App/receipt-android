@@ -20,8 +20,11 @@ import java.lang.ref.WeakReference
 
 class ListActivity : AppCompatActivity() {
 
+
+
     companion object{
         val receiptList = mutableListOf<SavedReceipt>()
+        val rvAdapter = ReceiptRecyclerViewAdapter(receiptList)
     }
 
     lateinit var viewModel: ReceiptViewModel
@@ -29,7 +32,6 @@ class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-
 
 
         listActivity_bottomAppBar_fab.setOnClickListener {
@@ -51,14 +53,9 @@ class ListActivity : AppCompatActivity() {
                 val currentReceipt = response.body()?.receipts?.receipts
 
                 currentReceipt?.forEach {
-                    receiptList.add(SavedReceipt(it.id, it.purchase_date, it.merchant, it.amount.toFloat(), it.notes, it.created_at, it.updated_at, it.user_id))
+                    receiptList.add(SavedReceipt(it.id, it.purchase_date, it.merchant, it.amount.toFloat(), it.notes, it.created_at, it.updated_at, it.user_id ))
                 }
-
-                rv_receipts.apply {
-                    hasFixedSize()
-                    layoutManager = LinearLayoutManager(this@ListActivity)
-                    adapter = ReceiptRecyclerViewAdapter(receiptList)
-                }
+                initRV(rvAdapter)
 
             }
 
@@ -66,28 +63,19 @@ class ListActivity : AppCompatActivity() {
 
 
     }
-
+    fun initRV(rvAdapter: ReceiptRecyclerViewAdapter) {
+        rv_receipts.apply {
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(this@ListActivity)
+            adapter = rvAdapter
+        }
+    }
     override fun onResume() {
 
+        rvAdapter.updateRV(receiptList)
         super.onResume()
-        rv_receipts.apply {
-            hasFixedSize()
-            layoutManager = LinearLayoutManager(this@ListActivity)
-            adapter = ReceiptRecyclerViewAdapter(receiptList)
-        }
+
     }
-
-    override fun onPostResume() {
-
-        super.onPostResume()
-        rv_receipts.apply {
-            hasFixedSize()
-            layoutManager = LinearLayoutManager(this@ListActivity)
-            adapter = ReceiptRecyclerViewAdapter(receiptList)
-        }
-    }
-
-
 
     private fun getReceiptByBusiness(receiptName: String) {
         viewModel.receipts

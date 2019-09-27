@@ -71,4 +71,9 @@ class ReceiptRecyclerViewAdapter(private var savedReceiptList: List<SavedReceipt
         }
     }
 
+    fun updateRV(newList: List<SavedReceipt>) {
+        savedReceiptList = newList
+        notifyDataSetChanged()
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.receipttracker.model
 
+import android.graphics.Bitmap
 import androidx.annotation.NonNull
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
@@ -48,6 +49,8 @@ class SavedReceipt(
     //@ColumnInfo(name = "user_id_for_receipt")
     @SerializedName("user_id")
     val userId : Int
+
+   // val photo: Bitmap? = null
 
 )
 {
