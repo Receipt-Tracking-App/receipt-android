@@ -22,7 +22,9 @@
                     android:layout_height="wrap_content"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle"
+                                                           
+                    android:id="@+id/rv_receipts"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintLeft_toLeftOf="parent"

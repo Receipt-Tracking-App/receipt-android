@@ -1,10 +1,14 @@
 package com.receipttracker.ui
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.receipttracker.R
 
 
@@ -15,6 +19,7 @@ import com.receipttracker.model.SavedReceipt
 import com.receipttracker.remote.ReceiptTrackerService
 import com.receipttracker.remote.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_add_receipt.*
+import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,7 +63,7 @@ class AddReceiptActivity : AppCompatActivity() {
             return true
         }
     }
- 
+
     private fun validateMerchant(): Boolean{
         if(text_merchant_add.editText?.text.isNullOrBlank()) {
             text_merchant_add.error = "Seller cannot be empty"
@@ -97,10 +102,8 @@ class AddReceiptActivity : AppCompatActivity() {
         val cost = text_amount_add.editText?.text.toString().toDouble()
         val description = text_notes_add.editText?.text.toString().trim()
 
-        //TODO Change this token when login is complete
-        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1NDM1MzAsImV4cCI6MTU2OTU2NTEzMCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.cmc-FkZ-PU3MLr2P5HK4C76_EieHv0mOm24ZP8lJKbw"
-
-        val call: Call<ReceiptResponse> = ServiceBuilder.create().createNewReceipt(token,
+        Log.i("onResponse", LoginActivity.token)
+        val call: Call<ReceiptResponse> = ServiceBuilder.create().createNewReceipt(LoginActivity.token,
             Receipt(date, merchant, cost, description))
 
 
@@ -112,16 +115,17 @@ class AddReceiptActivity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<ReceiptResponse>,
                 response: Response<ReceiptResponse>
-            ) {
 
-                val message = response.body()?.message ?: "not looking so good guys"
-                Log.i("onResponse", message)
+            ) {
+                ListActivity.receiptList.add(SavedReceipt(0, date, merchant, cost.toFloat(), description, "", "", LoginActivity.userId))
+                val intent = Intent(this@AddReceiptActivity, ListActivity::class.java)
+                startActivity(intent)
             }
 
         })
 
-        Toast.makeText(this, "Receipt has been added successfully", Toast.LENGTH_SHORT).show()
         finish()
+        Toast.makeText(this, "Receipt has been added successfully", Toast.LENGTH_SHORT).show()
     }
 
 }

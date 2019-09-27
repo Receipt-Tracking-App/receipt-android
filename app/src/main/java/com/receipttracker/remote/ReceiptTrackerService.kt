@@ -29,7 +29,7 @@ interface ReceiptTrackerService {
     fun createUser(@Body newUser: NewUser): Call<RegisterResponse>
 
     @POST("auth/login")
-    fun userLoginPost(@Body userLogin: UserLogin) : Call<User>
+    fun userLoginPost(@Body userLogin: UserLogin) : Call<LoginResponse>
 
     companion object {
 

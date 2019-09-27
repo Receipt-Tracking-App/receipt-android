@@ -1,14 +1,21 @@
 package com.receipttracker.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.util.Log
+
+//
+
 import androidx.lifecycle.ViewModelProviders
 import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
+
+//
+
 import com.receipttracker.model.*
 import com.receipttracker.remote.ServiceBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,8 +34,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.StringBuilder
+
 import java.lang.ref.WeakReference
 import retrofit2.http.Body
+
 
 
 class ListActivity : AppCompatActivity() {
@@ -48,6 +57,11 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+
+
+        listActivity_bottomAppBar_fab.setOnClickListener {
+            startActivity(Intent(this, AddReceiptActivity::class.java))
+/*
         viewModel = ViewModelProviders.of(this).get(ReceiptViewModel::class.java)
 
 
@@ -86,11 +100,11 @@ class ListActivity : AppCompatActivity() {
         listActivity_bottomAppBar.setOnClickListener {
             val intent = Intent(this, DetailActivity::class.java)
             startActivity(intent)
+*/
         }
 
-        //TODO REPLACE TOKEN AND USERID WHEN LOGIN IS COMPLETE
-        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1NDM1MzAsImV4cCI6MTU2OTU2NTEzMCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.cmc-FkZ-PU3MLr2P5HK4C76_EieHv0mOm24ZP8lJKbw"
-        val call:Call<ListReceipts> = ServiceBuilder.create().getUserReceiptsByID(token, 21)
+        Log.i("onResponse", LoginActivity.token)
+        val call:Call<ListReceipts> = ServiceBuilder.create().getUserReceiptsByID(LoginActivity.token, LoginActivity.userId)
 
         call.enqueue(object: Callback<ListReceipts>{
             override fun onFailure(call: Call<ListReceipts>, t: Throwable) {
@@ -107,21 +121,38 @@ class ListActivity : AppCompatActivity() {
                     receiptList.add(SavedReceipt(it.id, it.purchase_date, it.merchant, it.amount.toFloat(), it.notes, it.created_at, it.updated_at, it.user_id))
                 }
 
-                var total:String = ""
-                receiptList.forEach {
-                    total +=it.merchant
+                rv_receipts.apply {
+                    hasFixedSize()
+                    layoutManager = LinearLayoutManager(this@ListActivity)
+                    adapter = ReceiptRecyclerViewAdapter(receiptList)
                 }
 
-                Log.i("onResponse", total)
             }
 
         })
+
+
     }
 
+    override fun onResume() {
 
- //  private fun getReceiptByBusiness(receiptName: String) {
- //      viewModel.receipts
+        super.onResume()
+        rv_receipts.apply {
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(this@ListActivity)
+            adapter = ReceiptRecyclerViewAdapter(receiptList)
+        }
+    }
 
+    override fun onPostResume() {
+
+        super.onPostResume()
+        rv_receipts.apply {
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(this@ListActivity)
+            adapter = ReceiptRecyclerViewAdapter(receiptList)
+        }
+    }
 
 
 
