@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.receipttracker.R
 import com.receipttracker.model.Receipt
 import com.receipttracker.model.ReceiptOverview
@@ -13,6 +15,7 @@ import com.receipttracker.model.SavedReceipt
 import com.receipttracker.remote.ReceiptTrackerService
 import com.receipttracker.remote.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_add_receipt.*
+import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -108,13 +111,14 @@ class AddReceiptActivity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<ReceiptResponse>,
                 response: Response<ReceiptResponse>
+
             ) {
-                //Log.i("onResponse", message)
+                ListActivity.receiptList.add(SavedReceipt(0, date, merchant, cost.toFloat(), description, "", "", LoginActivity.userId))
+
             }
 
         })
 
         Toast.makeText(this, "Receipt has been added successfully", Toast.LENGTH_SHORT).show()
-        finish()
     }
 }

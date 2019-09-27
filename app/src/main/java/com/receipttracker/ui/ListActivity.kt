@@ -1,5 +1,6 @@
 package com.receipttracker.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
@@ -67,14 +68,26 @@ class ListActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
+
+        super.onResume()
         rv_receipts.apply {
             hasFixedSize()
             layoutManager = LinearLayoutManager(this@ListActivity)
             adapter = ReceiptRecyclerViewAdapter(receiptList)
         }
-        super.onResume()
-
     }
+
+    override fun onPostResume() {
+
+        super.onPostResume()
+        rv_receipts.apply {
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(this@ListActivity)
+            adapter = ReceiptRecyclerViewAdapter(receiptList)
+        }
+    }
+
+
 
     private fun getReceiptByBusiness(receiptName: String) {
         viewModel.receipts
