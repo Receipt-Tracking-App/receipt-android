@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.i("onResponsee", response.body()?.error.toString())
 
                 if(error == false){
-                    token = response.body()!!.token
+                    token = "Bearer ${response.body()!!.token}"
                     Log.i("onResponse", token)
                     text_input_username.error = null
                     text_input_password.error = null

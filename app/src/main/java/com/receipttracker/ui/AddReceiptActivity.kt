@@ -95,6 +95,7 @@ class AddReceiptActivity : AppCompatActivity() {
         val cost = text_amount_add.editText?.text.toString().toDouble()
         val description = text_notes_add.editText?.text.toString().trim()
 
+        Log.i("onResponse", LoginActivity.token)
         val call: Call<ReceiptResponse> = ServiceBuilder.create().createNewReceipt(LoginActivity.token,
             Receipt(date, merchant, cost, description))
 
@@ -108,8 +109,7 @@ class AddReceiptActivity : AppCompatActivity() {
                 call: Call<ReceiptResponse>,
                 response: Response<ReceiptResponse>
             ) {
-                val message = response.body()!!.message
-                Log.i("onResponse", message)
+                //Log.i("onResponse", message)
             }
 
         })
