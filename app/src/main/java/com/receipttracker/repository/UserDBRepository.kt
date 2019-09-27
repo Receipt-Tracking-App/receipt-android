@@ -48,7 +48,7 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
 
     // Retrofit
     override fun loginUser(user: UserLogin) {
-
+/*
         apiFactory.userLoginPost(user).enqueue(object: Callback<User> {
 
             override fun onFailure(call: Call<User>, t: Throwable) {
@@ -73,7 +73,7 @@ class UserDBRepository(val context: Context) : UserRepoInterface {
                 }
             }
 
-        })
+        })*/
     }
 
 
