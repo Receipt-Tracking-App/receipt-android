@@ -34,6 +34,7 @@ class SavedReceipt(
 
     val purchaseDate: String,
 
+
     val merchant: String,
 
     val amount: Float,
@@ -47,8 +48,15 @@ class SavedReceipt(
     //@ColumnInfo(name = "user_id_for_receipt")
     @SerializedName("user_id")
     val userId : Int
-)
 
+)
+{
+    companion object{
+        val receiptList = mutableListOf<SavedReceipt>()
+        const val TAG = "receipt string tag"
+        const val NEW_ENTRY_REQUEST = 2
+    }
+}
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
 @Entity(
     tableName = "receipt_media"

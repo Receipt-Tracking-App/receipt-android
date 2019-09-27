@@ -21,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+
         viewModel = ViewModelProviders.of(this).get(ReceiptViewModel::class.java)
         ReadAllAsyncTask(this).execute()
 
@@ -30,10 +31,10 @@ class DetailActivity : AppCompatActivity() {
         view.text = savedReceipt.merchant
         view.tag = savedReceipt.receiptId
 
-        view.setOnLongClickListener {
-            DeleteAsyncTask(viewModel).execute(savedReceipt)
-            return@setOnLongClickListener true
-        }
+      // view.setOnLongClickListener {
+      //     DeleteAsyncTask(viewModel).execute(savedReceipt)
+      //     return@setOnLongClickListener true
+      // }
         return view
 
 
@@ -69,11 +70,11 @@ class DetailActivity : AppCompatActivity() {
 
             receipt_list.removeAllViews()
 
-        savedReceipt.forEach {savedReceipt ->
-            receipt_list.addView(createTextView(savedReceipt))
+        savedReceipt.forEach {
+            receipt_list.addView(createTextView(it))
         }
 
-
+    //    return updateForEntries(savedReceipt)
     }
     class ReadAllAsyncTask(activity: DetailActivity): AsyncTask<Void, Void, LiveData<List<SavedReceipt>>?>(){
 
@@ -88,7 +89,7 @@ class DetailActivity : AppCompatActivity() {
                     entries.observe(act,
                         Observer<List<SavedReceipt>> { t ->
                             t?.let {
-                                act.updateForEntries(t)
+                                act.updateForEntries(it)
                             }
                         }
 

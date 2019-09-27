@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.receipttracker.R
+
+
 import com.receipttracker.model.Receipt
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.ReceiptResponse
@@ -121,4 +123,5 @@ class AddReceiptActivity : AppCompatActivity() {
 
         Toast.makeText(this, "Receipt has been added successfully", Toast.LENGTH_SHORT).show()
     }
+
 }
