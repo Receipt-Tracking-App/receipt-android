@@ -57,6 +57,10 @@ class ListActivity : AppCompatActivity() {
         listActivity_bottomAppBar_fab.setOnClickListener {
             startActivity(Intent(this, AddReceiptActivity::class.java))
         }
+        listActivity_bottomAppBar.setOnClickListener {
+            val intent = Intent(this, DetailActivity::class.java)
+            startActivity(intent)
+        }
 
         //TODO REPLACE TOKEN AND USERID WHEN LOGIN IS COMPLETE
         val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1NDM1MzAsImV4cCI6MTU2OTU2NTEzMCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.cmc-FkZ-PU3MLr2P5HK4C76_EieHv0mOm24ZP8lJKbw"
