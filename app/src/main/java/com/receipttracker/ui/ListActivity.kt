@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.util.Log
+import androidx.lifecycle.ViewModelProviders
 import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.*
@@ -18,6 +19,7 @@ import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
 
 import com.receipttracker.model.receiptRepo
+import com.receipttracker.remote.ServiceBuilder.Companion.create
 import com.receipttracker.repository.SavedReceiptsDBERepository
 
 import kotlinx.android.synthetic.main.activity_list.*
@@ -33,6 +35,9 @@ class ListActivity : AppCompatActivity() {
 
     companion object{
         val receiptList = mutableListOf<SavedReceipt>()
+        const val TAG = "receipt string tag"
+        const val NEW_ENTRY_REQUEST = 2
+        const val EDIT_ENTRY_REQUEST =1
     }
 
     lateinit var viewModel: ReceiptViewModel
@@ -43,6 +48,8 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        viewModel = ViewModelProviders.of(this).get(ReceiptViewModel::class.java)
+
 
        // apiBuilder.getUserReceiptsByID(1)
         var itemList = listOf<SavedReceipt>(SavedReceipt(0,
@@ -52,11 +59,30 @@ class ListActivity : AppCompatActivity() {
         recycle.apply {
             layoutManager =  LinearLayoutManager(this@ListActivity)
             adapter = ReceiptRecyclerViewAdapter(itemList)
+
         }
 
-        listActivity_bottomAppBar_fab.setOnClickListener {
-            startActivity(Intent(this, AddReceiptActivity::class.java))
-        }
+      listActivity_bottomAppBar_fab.setOnClickListener {
+          startActivity(Intent(this, AddReceiptActivity::class.java))
+
+//         val entry = itemList
+//
+  //        intent.putExtra(SavedReceipt.TAG, entry.size -1)
+//
+    //     startActivityForResult(
+//
+      //        intent,
+//
+        //      NEW_ENTRY_REQUEST
+//
+          //)
+
+       //startActivity(intent)
+
+     }
+
+     //   CreateAsyncTask(viewModel).execute()
+
         listActivity_bottomAppBar.setOnClickListener {
             val intent = Intent(this, DetailActivity::class.java)
             startActivity(intent)
@@ -117,6 +143,74 @@ class ListActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == NEW_ENTRY_REQUEST) {
+
+                if (data != null) {
+
+                    val entry = data.getSerializableExtra(SavedReceipt.TAG) as SavedReceipt
+
+                    //make sure to add the entry
+
+
+
+                    CreateAsynkTask(viewModel).execute(entry)
+
+                    //    repo.createEntry(entry)
+
+                }
+
+            } else if (requestCode == EDIT_ENTRY_REQUEST) {
+
+                if (data != null) {
+
+                    val entry = data.getSerializableExtra(SavedReceipt.TAG) as SavedReceipt
+
+                    //  entryList[entry.id] = entry
+
+               //     UpdateTssk(viewModel).execute(entry)
+
+                    //repo.updateEntry(entry)
+
+
+
+                }
+
+            }
+
+        }
+
+    }
+    class CreateAsynkTask(viewModel: ReceiptViewModel): AsyncTask<SavedReceipt, Void, Unit>(){
+
+
+
+        private val viewModel = WeakReference(viewModel)
+
+        override fun doInBackground(vararg entries: SavedReceipt?) {
+
+            if (entries.isNotEmpty()) {
+
+                entries[0]?.let {
+
+                    viewModel.get()?.receipts
+
+                }
+
+            }
+
+        }
+
+    }
+
 
 
 
