@@ -53,12 +53,12 @@ class ListActivity : AppCompatActivity() {
                     receiptList.add(SavedReceipt(it.id, it.purchase_date, it.merchant, it.amount.toFloat(), it.notes, it.created_at, it.updated_at, it.user_id))
                 }
 
-                var total:String = ""
-                receiptList.forEach {
-                    total +=it.merchant
+                rv_receipts.apply {
+                    hasFixedSize()
+                    layoutManager = LinearLayoutManager(this@ListActivity)
+                    adapter = ReceiptRecyclerViewAdapter(receiptList)
                 }
 
-                Log.i("onResponse", total)
             }
 
         })
