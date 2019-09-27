@@ -11,10 +11,8 @@ import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.*
 import com.receipttracker.remote.ServiceBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.receipttracker.R
-import com.receipttracker.ViewModel.ReceiptViewModel
-import com.receipttracker.local.SavedReceiptDao
-import com.receipttracker.local.SavedReceiptDao_Impl
+
+
 import com.receipttracker.model.ReceiptCategories
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.SavedReceipt
@@ -29,7 +27,7 @@ import retrofit2.Response
 import java.lang.StringBuilder
 import java.lang.ref.WeakReference
 import retrofit2.http.Body
-import java.lang.ref.WeakReference
+
 
 class ListActivity : AppCompatActivity() {
 
@@ -48,7 +46,8 @@ class ListActivity : AppCompatActivity() {
 
        // apiBuilder.getUserReceiptsByID(1)
         var itemList = listOf<SavedReceipt>(SavedReceipt(0,
-            11,"MCDS", 1.69f, "ghuighsdk",0), SavedReceipt(0, 11/11/1986, "SHOPPING MALL", 200.00f, "horrible experience", 1)
+            "11/11/1386","MCDS", 1.69f, "ghuighsdk","0","0",0),
+            SavedReceipt(0, "11/11/1986", "SHOPPING MALL", 200.00f, "horrible experience", "1", "0", 1)
         )
         recycle.apply {
             layoutManager =  LinearLayoutManager(this@ListActivity)
@@ -114,13 +113,7 @@ class ListActivity : AppCompatActivity() {
 
         }
     }
-    companion object {
 
-        const val NEW_ENTRY_REQUEST = 2
-
-        const val EDIT_ENTRY_REQUEST = 1
-
-    }
 
 
 }
