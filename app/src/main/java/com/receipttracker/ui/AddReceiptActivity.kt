@@ -58,7 +58,7 @@ class AddReceiptActivity : AppCompatActivity() {
             return true
         }
     }
-
+ 
     private fun validateMerchant(): Boolean{
         if(text_merchant_add.editText?.text.isNullOrBlank()) {
             text_merchant_add.error = "Seller cannot be empty"
@@ -98,7 +98,7 @@ class AddReceiptActivity : AppCompatActivity() {
         val description = text_notes_add.editText?.text.toString().trim()
 
         //TODO Change this token when login is complete
-        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1MTk0NjAsImV4cCI6MTU2OTU0MTA2MCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.aWVyRUv47RYbK47vzmEhrAzEWd4YV2r4Do2CtT0tm4w"
+        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0TmFtZSI6ImNob3ciLCJ1c2VySWQiOjIxLCJpYXQiOjE1Njk1NDM1MzAsImV4cCI6MTU2OTU2NTEzMCwiYXVkIjoiZ2VuZXJhbHB1YmxpYyIsImlzcyI6IlJlY2VpcHRUcmFja2VySW5jIiwic3ViIjoiYXV0aEByZWNlaXB0dHJhY2tlcmluYy5jb20ifQ.cmc-FkZ-PU3MLr2P5HK4C76_EieHv0mOm24ZP8lJKbw"
 
         val call: Call<ReceiptResponse> = ServiceBuilder.create().createNewReceipt(token,
             Receipt(date, merchant, cost, description))
