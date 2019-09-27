@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.receipttracker.R
-import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.*
 import com.receipttracker.remote.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_list.*
@@ -16,7 +14,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.StringBuilder
-import java.lang.ref.WeakReference
 
 class ListActivity : AppCompatActivity() {
 
