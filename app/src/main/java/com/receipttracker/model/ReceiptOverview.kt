@@ -10,6 +10,7 @@ class ReceiptOverview(
     val service: String
 )
 
+
 class Receipt(
     val purchaseDate: String,
     val merchant: String,
