@@ -113,7 +113,8 @@ class AddReceiptActivity : AppCompatActivity() {
                 call: Call<ReceiptResponse>,
                 response: Response<ReceiptResponse>
             ) {
-                val message = response.body()!!.message
+
+                val message = response.body()?.message ?: "not looking so good guys"
                 Log.i("onResponse", message)
             }
 
@@ -122,4 +123,5 @@ class AddReceiptActivity : AppCompatActivity() {
         Toast.makeText(this, "Receipt has been added successfully", Toast.LENGTH_SHORT).show()
         finish()
     }
+
 }
