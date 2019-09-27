@@ -1,5 +1,7 @@
 package com.receipttracker.ui
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -116,7 +118,8 @@ class AddReceiptActivity : AppCompatActivity() {
 
             ) {
                 ListActivity.receiptList.add(SavedReceipt(0, date, merchant, cost.toFloat(), description, "", "", LoginActivity.userId))
-
+                val intent = Intent(this@AddReceiptActivity, ListActivity::class.java)
+                startActivity(intent)
             }
 
         })
