@@ -20,7 +20,7 @@ class ReceiptRecyclerViewAdapter(private var savedReceiptList: List<SavedReceipt
         val priceTextView = view.recyclerItemReceipt_priceTV as TextView
         val dateTextView = view.recyclerItemReceipt_dateTV as TextView
         val businessNameTextView = view.recyclerItemReceipt_businessTV as TextView
-        val locationTextView = view.recyclerItemReceipt_locationTV as TextView
+//        val locationTextView = view.recyclerItemReceipt_locationTV as TextView
         val expandAndCollapseBttn = view.recyclerItemReceipt_expandAndCollapseBttn as ImageButton
 
         //Expandable stuff

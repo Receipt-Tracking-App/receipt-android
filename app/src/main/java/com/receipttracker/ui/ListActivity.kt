@@ -4,16 +4,31 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.util.Log
 import com.receipttracker.R
 import com.receipttracker.ViewModel.ReceiptViewModel
 import com.receipttracker.model.*
 import com.receipttracker.remote.ServiceBuilder
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.receipttracker.R
+import com.receipttracker.ViewModel.ReceiptViewModel
+import com.receipttracker.local.SavedReceiptDao
+import com.receipttracker.local.SavedReceiptDao_Impl
+import com.receipttracker.model.ReceiptCategories
+import com.receipttracker.model.ReceiptOverview
+import com.receipttracker.model.SavedReceipt
+
+import com.receipttracker.model.receiptRepo
+import com.receipttracker.repository.SavedReceiptsDBERepository
+
 import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.StringBuilder
+import java.lang.ref.WeakReference
+import retrofit2.http.Body
 import java.lang.ref.WeakReference
 
 class ListActivity : AppCompatActivity() {
@@ -24,9 +39,21 @@ class ListActivity : AppCompatActivity() {
 
     lateinit var viewModel: ReceiptViewModel
 
+    val apiBuilder = SavedReceiptsDBERepository(this).apiFactory()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
+
+       // apiBuilder.getUserReceiptsByID(1)
+        var itemList = listOf<SavedReceipt>(SavedReceipt(0,
+            11,"MCDS", 1.69f, "ghuighsdk",0), SavedReceipt(0, 11/11/1986, "SHOPPING MALL", 200.00f, "horrible experience", 1)
+        )
+        recycle.apply {
+            layoutManager =  LinearLayoutManager(this@ListActivity)
+            adapter = ReceiptRecyclerViewAdapter(itemList)
+        }
 
         listActivity_bottomAppBar_fab.setOnClickListener {
             startActivity(Intent(this, AddReceiptActivity::class.java))
@@ -62,8 +89,16 @@ class ListActivity : AppCompatActivity() {
         })
     }
 
+
+ //  private fun getReceiptByBusiness(receiptName: String) {
+ //      viewModel.receipts
+
+
+
+
     private fun getReceiptByBusiness(receiptName: String) {
         viewModel.receipts
+
 
     }
 
@@ -79,4 +114,13 @@ class ListActivity : AppCompatActivity() {
 
         }
     }
+    companion object {
+
+        const val NEW_ENTRY_REQUEST = 2
+
+        const val EDIT_ENTRY_REQUEST = 1
+
+    }
+
+
 }

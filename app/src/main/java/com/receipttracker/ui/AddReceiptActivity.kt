@@ -6,6 +6,8 @@ import android.text.SpannableStringBuilder
 import android.util.Log
 import android.widget.Toast
 import com.receipttracker.R
+
+
 import com.receipttracker.model.Receipt
 import com.receipttracker.model.ReceiptOverview
 import com.receipttracker.model.ReceiptResponse

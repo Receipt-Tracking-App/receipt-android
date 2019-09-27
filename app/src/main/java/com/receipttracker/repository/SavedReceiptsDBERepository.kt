@@ -11,7 +11,7 @@ class SavedReceiptsDBERepository (val context: Context) :
     ReceiptRepoInterface {
 
     private val database = AppDB.getDatabase(context)
-    private val apiFactory = apiFactory()
+     val apiFactory = apiFactory()
 
 
 

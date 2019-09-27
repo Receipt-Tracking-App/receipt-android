@@ -34,6 +34,7 @@ class SavedReceipt(
 
     val purchaseDate: String,
 
+
     val merchant: String,
 
     val amount: Float,
@@ -47,6 +48,7 @@ class SavedReceipt(
     //@ColumnInfo(name = "user_id_for_receipt")
     @SerializedName("user_id")
     val userId : Int
+
 )
 
 //Receipt Media (Picture of the receipt). Has the same primarykey as saved receipt.
