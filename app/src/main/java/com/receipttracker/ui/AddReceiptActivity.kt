@@ -124,6 +124,7 @@ class AddReceiptActivity : AppCompatActivity() {
 
         })
 
+        finish()
         Toast.makeText(this, "Receipt has been added successfully", Toast.LENGTH_SHORT).show()
     }
 
