@@ -16,7 +16,7 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
 
     companion object{
-        var token:String? = null
+        var token:String = ""
     }
 
     private var validatedUsername: Boolean = false
@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.i("onResponsee", response.body()?.error.toString())
 
                 if(error == false){
-                    token = response.body()?.token
+                    token = response.body()!!.token
                     Log.i("onResponse", token)
                     text_input_username.error = null
                     text_input_password.error = null
